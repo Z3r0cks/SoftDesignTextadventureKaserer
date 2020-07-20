@@ -1,0 +1,38 @@
+[
+  {
+    "id": "start",
+    "content": "Starte neues Spiel [N]"
+  },
+  {
+    "id": "load",
+    "content": "Spielstand laden [L]"
+  },
+  {
+    "id": "back",
+    "content": "Zurück [B]"
+  },
+  {
+    "id": "help",
+    "content": "Hilfe [H]"
+  },
+  {
+    "id": "loadMessage",
+    "content": "Hier kannst du dein Spiel laden"
+  },
+  {
+    "id": "title",
+    "content": "Forgotten Souls <br> <br>"
+  },
+  {
+    "id": "warn",
+    "content": "Falsche Eingabe"
+  },
+  {
+    "id": "intro1",
+    "content": "Es ist kalt ... ich bin Müde und orientierungslos. Wie bin ich nur hierher gekommen? Die Dunkelheit verschlingt meinen Verstand. \n Wie konnte das nur passieren ... Eben war alles noch … gewöhnlich … und schon sitze ich hier und weiß nicht wo hin. Was ist passiert?"
+  },
+  {
+    "id": "intro2",
+    "content": "Was soll ich hier nun machen (tippe help (h))? Ich sollte mich am besten mal umschauen (tippe look (lo)). Vielleicht finde ich ja etwas nützliches für was ich einstecken (put <ITEM>) oder benutzen kann (use <ITEM> <OBJECT>). Außerdem sollte ich mal nachschauen, was ich alles in den Taschen habe (inventory (iv))."
+  }
+]

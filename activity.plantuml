@@ -1,0 +1,30 @@
+@startuml textadventure
+left to right direction
+start
+:Main        ;
+:CreateEvents        ;
+:CreateCreatures        ;
+:CreateRooms        ;
+:CreateStory        ;
+:CreateInteraction        ;
+stop
+
+partition CreateEvents {
+start
+  :let allRooms: Room [] ]
+  :create rooms as new Room.
+  Use the 'map-pattern' file
+  from a1 to h6]
+  :push all createt rooms into allRooms]
+stop
+}
+partition CreateEvents {
+start
+  :let allRooms: Room [] ]
+  :create rooms as new Room.
+  Use the 'map-pattern' file
+  from a1 to h6]
+  :push all createt rooms into allRooms]
+stop
+}
+@enduml

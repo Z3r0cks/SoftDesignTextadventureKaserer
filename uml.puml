@@ -1,0 +1,140 @@
+@startuml Textadventure
+
+abstract class SearchContent {
+  {static}searchContent(_string: string)
+}
+
+class Inventar {
+  + currentInventar: string[]
+  + constructor(_currentInventar:string[])
+  + addItem(_item: string)
+  + removeItem(_item: string)
+}
+
+class ConsoleOutput {
+  + currentRoom: string;
+  + constructor(_currentRoom: string)
+  {static} filterConsoleOutput(_inputElement: string)
+  {static} buildStartMenu(_inputLowerElement: string)
+  {static} buildIngameMenu(_inputLowerElement: string)
+  {static} deleteConsole(_inputLowerElement: string)
+}
+
+class Room {
+ + roomEvents: number[]
+ + roomEnemys: number[]
+ + posDirection: string[]
+ + constructor(_roomEvents: number[], _roomEnemys: number[], _posDirection: string[])
+}
+
+class Events {
+  + id: number
+  + story: string
+  + effect: string
+}
+
+interface GetStory {
+  + id: string
+  + content: string
+}
+
+interface Creature {
+  hp: number
+  type: string
+}
+
+class Player implements Creature {
+  + hp: number
+  + weapon: string
+  + strength: number
+  + constructor(_hp:number, _weapon: string, _stength: number)
+  {static} decreaseHP(_valueToDecrease: number);
+  + increaseHP(_valueToIncrease: number);
+  + decreaseStrength(_valueToDecrease: number);
+  + increaseStrength(_valueToIncrease: number);
+  + setPlayerWeapon(_newWeapon);
+}
+
+abstract Enemy implements Creature {
+  {abstract} hp: number
+  {abstract} strength
+  {abstract} type: string
+  {abstract} weapon: string
+}
+
+class EnemyOne extends Enemy {
+  + hp: number
+  + strength
+  + type: string
+  + weapon: string
+}
+class EnemyTwo extends Enemy {
+  + hp: number
+  + strength
+  + type: string
+  + weapon: string
+}
+
+class EnemyThree extends Enemy {
+  + hp: number
+  + strength
+  + type: string
+  + weapon: string
+}
+
+abstract NPC implements Creature {
+  {abstract} hp: number
+  {abstract} type: string
+}
+
+class NPCOne extends NPC {
+  + hp: number
+  + type: string
+}
+
+class NPCTwo extends NPC {
+  + hp: number
+  + type: string
+}
+
+class NPCThree extends NPC {
+  + hp: number
+  + type: string
+}
+
+abstract Boss implements Creature {
+  {abstract} Name: String
+  {abstract} hp: number
+  {abstract} strength
+  {abstract} type: string
+  {abstract} weapon: string
+}
+
+interface Item {
+  type: string
+}
+
+class Weapon implements Item {
+  + type: String
+  + strength: number
+  + constructor(_type: string, _strength: number)
+}
+
+class Armor implements Item {
+  + type: String
+  + defense: number
+  + constructor(_type: string, _defense: number)
+}
+
+class healthportion implements Item {
+  + type: String
+  + defense: number
+  + constructor(_type: string, _defense: number)
+}
+  GetStory -[hidden]->  ConsoleOutput
+  ConsoleOutput -[hidden]-> Creature
+  EnemyOne -[hidden]-> Room
+  Room -[hidden]-> Item
+
+
+@enduml
