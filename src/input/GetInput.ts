@@ -6,7 +6,7 @@ namespace Textadventure {
       const eventlistener: (_el: KeyboardEvent) => void = function (_keyElement: KeyboardEvent): void {
 
         if (_keyElement.key == "Enter") {
-          const thisConsoleId: string = "consoleInput input-" + consoleInputCount;
+          const thisConsoleId: string = "consoleInput input";
           let theInputValue: string;
           const theInputElement: HTMLInputElement = (document.getElementById(thisConsoleId) as HTMLInputElement);
           theInputValue = theInputElement.value;
@@ -14,7 +14,6 @@ namespace Textadventure {
 
           if (checkInput(theInputElement.value)) {
             theInputElement.value = "";
-            consoleInputCount++;
             resolve(theInputValue);
           } else {
             theInputElement.value = "";

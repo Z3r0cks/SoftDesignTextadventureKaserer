@@ -4,6 +4,27 @@ abstract class SearchContent {
   {static}searchContent(_string: string)
 }
 
+abstract class Inventar {
+  {static} getRoomItem()
+}
+
+class Weapon extends Item {
+  + name: string
+  + strength: number
+  {static} calcDamage()
+}
+
+class Armor extends Item {
+  + name: string
+  + defense: number
+  {static} calcDefense()
+}
+
+class HealPortion extends Item {
+  + name: string
+  + defense: number
+}
+
 class Inventar {
   + currentInventar: string[]
   + constructor(_currentInventar:string[])
@@ -27,10 +48,34 @@ class Room {
  + constructor(_roomEvents: number[], _roomEnemys: number[], _posDirection: string[])
 }
 
-class Events {
-  + id: number
+interface Effect {
+  + type: string
+  + value: number
+}
+
+interface HealEffect {
+  + type: string
+  + value: 100
+}
+
+interface DamageEffect {
+  + type: string
+  + value: 10
+}
+
+interface Event {
   + story: string
-  + effect: string
+  + effect: effect
+}
+
+class HealEvent {
+  + story: string
+  + effect: effect
+}
+
+interface DamageEvent {
+  + story: string
+  + effect: effect
 }
 
 interface GetStory {

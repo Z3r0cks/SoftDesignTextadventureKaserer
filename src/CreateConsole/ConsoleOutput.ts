@@ -21,6 +21,7 @@ namespace Textadventure {
         ConsoleOutput.buildIngameMenu(inputLowerElement);
       } else if (gameStage == "loadGame" && inputLowerElement == "b") {
         ConsoleOutput.buildStartMenu("start");
+        ConsoleOutput.deleteConsole(inputLowerElement);
       }
     }
 
@@ -32,7 +33,7 @@ namespace Textadventure {
       seperatorDiv.className = "seperator";
       const firstDiv: HTMLDivElement = document.createElement("div");
       const inputField: HTMLInputElement = document.createElement("input");
-      inputField.id = "consoleInput input-" + consoleInputCount;
+      inputField.id = "consoleInput input";
       const allElements: HTMLElement[] = [];
 
       switch (_inputLowerElement) {
@@ -51,7 +52,9 @@ namespace Textadventure {
           const secondDiv: HTMLDivElement = document.createElement("div");
           firstDiv.innerHTML = SearchContent.search("intro1");
           secondDiv.innerHTML = SearchContent.search("intro2");
+          ConsoleOutput.deleteConsole(_inputLowerElement);
           gameStage = "inGame";
+          currentRoom = a1;
           allElements.push(seperatorDiv, firstDiv, secondDiv, inputField);
           break;
 
@@ -62,6 +65,7 @@ namespace Textadventure {
           uploadInput.id = "uploadInput";
           firstDiv.innerHTML = SearchContent.search("loadMessage");
           backDiv.innerHTML = SearchContent.search("back");
+          ConsoleOutput.deleteConsole(_inputLowerElement);
           gameStage = "loadGame";
           allElements.push(seperatorDiv, firstDiv, backDiv, uploadInput, inputField);
           break;
@@ -70,35 +74,90 @@ namespace Textadventure {
           const warnDiv: HTMLDivElement = document.createElement("div");
           warnDiv.innerHTML = SearchContent.search("warn");
           warnDiv.className = "warn-div";
+          ConsoleOutput.deleteConsole(_inputLowerElement);
           allElements.push(warnDiv);
           break;
       }
       allElements.forEach(element => {
         document.body.appendChild(element);
       });
-      ConsoleOutput.deleteConsole();
+      document.getElementById("consoleInput input").focus();
     }
 
 
     /////////////////////// IngameMenu //////////////////////////////
 
-    static buildIngameMenu(_inputElement: string): void {
-      //code
+    static buildIngameMenu(_inputLowerElement: string): void {
+      const seperatorDiv: HTMLDivElement = document.createElement("div");
+      const firstDiv: HTMLDivElement = document.createElement("div");
+      const inputField: HTMLInputElement = document.createElement("input");
+      seperatorDiv.className = "seperator";
+      inputField.id = "consoleInput input";
+      const allElements: HTMLElement[] = [];
+      const goLeft: string = Room.findWay("left");
+      const goRight: string = Room.findWay("right");
+      const goForward: string = Room.findWay("forward");
+      const roomEnemy: Creature | boolean = Creature.getRoomEnemy();
+      const roomEvent: Event | boolean = Event.getRoomEvent();
+      const roomItem: Item | boolean = Item.getRoomItem();
+
+      switch (_inputLowerElement) {
+        case ("hilfe"):
+          firstDiv.innerHTML = SearchContent.search("helpContent");
+          allElements.push(firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          break;
+        case ("umschauen"):
+          const itemString: string = (roomItem != false) ? "eine " + (currentRoom.roomItem as Item).name : "Du findest nichts mehr weiter.";
+          const eventString: string = (roomEvent != false) ? (currentRoom.roomEvent as Event).story : "";
+          const enemyString: string = (roomEnemy != false) ? "einen " + (currentRoom.roomEnemy as Creature).type + " als" : "kein";
+
+          firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString;
+          allElements.push(seperatorDiv, firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          break;
+        case ("inventar"):
+
+          break;
+        case ("einstecken"):
+
+          break;
+        case ("benutzen"):
+
+          break;
+        case ("gehen"):
+
+          break;
+        case ("angreifen"):
+
+          break;
+        case ("incorrectinput"):
+          const warnDiv: HTMLDivElement = document.createElement("div");
+          warnDiv.innerHTML = SearchContent.search("warn");
+          warnDiv.className = "warn-div";
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          allElements.push(warnDiv);
+          break;
+      }
+
+      allElements.forEach(element => {
+        document.body.appendChild(element);
+      });
+      document.getElementById("consoleInput input").focus();
     }
 
 
     /////////////////////// DeleteConsole //////////////////////////////
 
-    static deleteConsole(): void {
-      const inputFieldCheck: HTMLElement = document.getElementById("consoleInput input-" + (consoleInputCount));
-      if (consoleInputCount > 0 && inputFieldCheck != null) {
-        const removeInput: HTMLElement = document.getElementById("consoleInput input-" + (consoleInputCount - 1));
-        document.body.removeChild(removeInput);
+    static deleteConsole(_input: string): void {
+      const inputFieldCheck: HTMLElement = document.getElementById("consoleInput input");
+      if (inputFieldCheck != null && checkInput(_input)) {
+        document.body.removeChild(inputFieldCheck);
       }
       if (document.getElementById("uploadInput") != undefined && gameStage == "start") {
-        console.log("test");
         const removeInput: HTMLElement = document.getElementById("uploadInput");
         document.body.removeChild(removeInput);
+
       }
     }
   }

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "start",
+    "content": "Starte neues Spiel [N]"
+  },
+  {
+    "id": "load",
+    "content": "Spielstand laden [L]"
+  },
+  {
+    "id": "back",
+    "content": "Zurück [B]"
+  },
+  {
+    "id": "help",
+    "content": "Hilfe [H]"
+  },
+  {
+    "id": "loadMessage",
+    "content": "Hier kannst du dein Spiel laden"
+  },
+  {
+    "id": "warn",
+    "content": "Falsche Eingabe"
+  },
+  {
+    "id": "warnIngame",
+    "content": "Ich weiß nicht was das das bedeuten soll"
+  },
+  {
+    "id": "helpContent",
+    "content": "Benutze die folgende Befehle: <br> <br> <span> umschauen </span>- um dich im Raum umzusehen. <br> <span> Inventar</span> - um dein Inventar zu sehen <br> <span>einstecken [ITEM]</span> - um ein Objekt in dein Inventar zu stecken, welches du beim umschauen gefunden hast. <br> <span>benutzen [ITEM]</span> - um ein Objekt aus deinem Inventar zu benutzen. <br> <span>gehe [RICHTUNG]</span> - um in den nächsten Raum zu gehen"
+  },
+  {
+    "id": "title",
+    "content": "Ich bin ein lustiger Adventure-Titel sein  <br> <br>"
+  },
+  {
+    "id": "intro1",
+    "content": "Es ist kalt ... ich bin Müde und orientierungslos. Wie bin ich nur hierher gekommen? Die Dunkelheit verschlingt meinen Verstand. \n Wie konnte das nur passieren ... Eben war alles noch … gewöhnlich … und schon sitze ich hier und weiß nicht wo hin. Was ist passiert?"
+  },
+  {
+    "id": "intro2",
+    "content": "Was soll ich hier nun machen (tippe:<span> hilfe </span>)? Ich sollte mich am besten mal umschauen (tippe <span> umschauen </span>). Vielleicht finde ich ja etwas nützliches für was ich einstecken (tippe: <span>einstecken [ITEM]</span>) oder benutzen kann (tippe: <span>benutzen [ITEM] </span>). Außerdem sollte ich mal nachschauen, was ich alles in den Taschen habe (tippe: <span>inventar</span>)."
+  }
+]

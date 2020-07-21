@@ -1,20 +1,31 @@
 namespace Textadventure {
   export class Room {
-    public roomEvents: number[];
-    public roomEnemys: number[];
+    public roomEvent: Event | boolean;
+    public roomEnemy: Creature | boolean;
+    public roomItem: Item | boolean;
     public posDirection: string[];
 
-    public constructor(_roomEvents: number[], _roomEnemys: number[], _directions: string[]) {
-      this.roomEnemys = _roomEnemys;
-      this.roomEvents = _roomEvents;
+    public constructor(_roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean, _directions: string[]) {
+      this.roomEnemy = _roomEnemy;
+      this.roomEvent = _roomEvent;
+      this.roomItem = _roomItem;
       this.posDirection = _directions;
     }
 
-    // checkOutPossibleWays(_left: string, _right: string, _forward: string): string {
-    //   if (_left == "" && _right == "" && _forward == "") {
-    //     return "deadEnd";
-    //   }
-    // }
+    static findWay(_direction: string): string {
+      switch (_direction) {
+        case ("left"):
+          return currentRoom.posDirection[0];
+
+        case ("right"):
+          return currentRoom.posDirection[1];
+
+        case ("forward"):
+          return currentRoom.posDirection[2];
+
+        default:
+          return "";
+      }
+    }
   }
 }
-
