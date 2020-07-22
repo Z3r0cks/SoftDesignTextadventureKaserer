@@ -24,7 +24,6 @@ namespace Textadventure {
         }
         break;
     }
-    console.log("isCorrect: " + isCorrect);
     return isCorrect;
   }
 }

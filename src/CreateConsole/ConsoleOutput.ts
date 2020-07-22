@@ -35,6 +35,7 @@ namespace Textadventure {
       const inputField: HTMLInputElement = document.createElement("input");
       inputField.id = "consoleInput input";
       const allElements: HTMLElement[] = [];
+      // inventar.addItem(new Weapon);
 
       switch (_inputLowerElement) {
 
@@ -94,9 +95,6 @@ namespace Textadventure {
       seperatorDiv.className = "seperator";
       inputField.id = "consoleInput input";
       const allElements: HTMLElement[] = [];
-      const goLeft: string = Room.findWay("left");
-      const goRight: string = Room.findWay("right");
-      const goForward: string = Room.findWay("forward");
       const roomEnemy: Creature | boolean = Creature.getRoomEnemy();
       const roomEvent: Event | boolean = Event.getRoomEvent();
       const roomItem: Item | boolean = Item.getRoomItem();
@@ -107,30 +105,64 @@ namespace Textadventure {
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
+
         case ("umschauen"):
-          const itemString: string = (roomItem != false) ? "eine " + (currentRoom.roomItem as Item).name : "Du findest nichts mehr weiter.";
+          const itemString: string = (roomItem != false) ? "eine " + (currentRoom.roomItem as Item).name : "";
           const eventString: string = (roomEvent != false) ? (currentRoom.roomEvent as Event).story : "";
           const enemyString: string = (roomEnemy != false) ? "einen " + (currentRoom.roomEnemy as Creature).type + " als" : "kein";
+          let wayString: String = "<br> Du siehst folgende Wege: <br>";
 
-          firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString;
-          allElements.push(seperatorDiv, firstDiv, inputField);
+          if (Room.findWay("left"))
+            wayString = wayString + "Links<br>";
+          if (Room.findWay("right"))
+            wayString = wayString + "Rechts <br> ";
+          if (Room.findWay("forward"))
+            wayString = wayString + "Geradeaus <br> ";
+          if (!Room.findWay("forward") && !Room.findWay("left") && Room.findWay("right"))
+            wayString = wayString + "Keinen";
+
+          firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString + wayString;
+          allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
-        case ("inventar"):
 
+        case ("inventar"):
+          inventar.addItem(new Sword);
+          inventar.addItem(new Mace);
+          let inventarString: String = "";
+
+          if (inventar.currentInventar.length > 0)
+            for (let i: number = 0; i < inventar.currentInventar.length; i++) {
+              inventarString = inventarString + "<br>" + inventar.currentInventar[i].name;
+            } else inventarString = "Du hast nichts im Inventar";
+          firstDiv.innerHTML = "In deinem Inventar befindet sich: <br> <br>" + inventarString;
+
+          allElements.push(firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
+
         case ("einstecken"):
 
           break;
+
         case ("benutzen"):
 
           break;
-        case ("gehen"):
 
+        case ("gehe linkgs"):
+          Room.changeRoom("left");
           break;
+        case ("gehe rechts"):
+          Room.changeRoom("right");
+          break;
+        case ("gehe geradeaus"):
+          Room.changeRoom("forward");
+          break;
+
         case ("angreifen"):
 
           break;
+
         case ("incorrectinput"):
           const warnDiv: HTMLDivElement = document.createElement("div");
           warnDiv.innerHTML = SearchContent.search("warn");

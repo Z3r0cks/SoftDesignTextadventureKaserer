@@ -8,16 +8,47 @@ abstract class Inventar {
   {static} getRoomItem()
 }
 
-class Weapon extends Item {
+interface Weapons extends Item {
   + name: string
   + strength: number
-  {static} calcDamage()
 }
 
-class Armor extends Item {
+class Stick implements Weapon {
+  + name: string
+  + damage
+}
+class RostySword implements Weapon {
+  + name: string
+  + damage
+}
+class Sword implements Weapon {
+  + name: string
+  + damage
+}
+class NobleSword implements Weapon {
+  + name: string
+  + damage
+}
+class BastardSword implements Weapon {
+  + name: string
+  + damage
+}
+class Mace implements Weapon {
+  + name: string
+  + damage
+}
+class HolySword implements Weapon {
+  + name: string
+  + damage
+}
+class LongSword implements Weapon {
+  + name: string
+  + damage
+}
+
+interface Armor extends Item {
   + name: string
   + defense: number
-  {static} calcDefense()
 }
 
 class HealPortion extends Item {

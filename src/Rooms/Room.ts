@@ -3,29 +3,61 @@ namespace Textadventure {
     public roomEvent: Event | boolean;
     public roomEnemy: Creature | boolean;
     public roomItem: Item | boolean;
-    public posDirection: string[];
+    public posLeft: Room | boolean;
+    public posRight: Room | boolean;
+    public posForward: Room | boolean;
 
-    public constructor(_roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean, _directions: string[]) {
+    public constructor(_roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean) {
       this.roomEnemy = _roomEnemy;
       this.roomEvent = _roomEvent;
       this.roomItem = _roomItem;
-      this.posDirection = _directions;
     }
 
-    static findWay(_direction: string): string {
+    static findWay(_direction: string): Room | boolean {
       switch (_direction) {
         case ("left"):
-          return currentRoom.posDirection[0];
+          return currentRoom.posLeft;
 
         case ("right"):
-          return currentRoom.posDirection[1];
+          return currentRoom.posRight;
 
         case ("forward"):
-          return currentRoom.posDirection[2];
+          return currentRoom.posForward;
 
         default:
-          return "";
+          return false;
       }
+    }
+
+
+    static changeRoom(_direction: string): void {
+      const leftRoom: Room | boolean = currentRoom.posLeft;
+      const rightRoom: Room | boolean = currentRoom.posRight;
+      const forwardRoom: Room | boolean = currentRoom.posForward;
+
+      if (_direction == "left") {
+        if (leftRoom != false) {
+          currentRoom = (leftRoom as Room);
+        }
+      }
+
+      else if (_direction == "right") {
+        if (rightRoom != false) {
+          currentRoom = (rightRoom as Room);
+        }
+      }
+
+      else if (_direction == "forward") {
+        if (forwardRoom != false) {
+          currentRoom = (currentRoom as Room);
+        }
+      }
+    }
+
+    public addPosRooms(_posLeft: Room | boolean, _posRight: Room | boolean, _posFoward: Room | boolean): void {
+      this.posLeft = _posLeft;
+      this.posRight = _posRight;
+      this.posForward = _posFoward;
     }
   }
 }
