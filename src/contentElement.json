@@ -28,8 +28,40 @@
     "content": "Ich weiß nicht was das das bedeuten soll"
   },
   {
+    "id": "useHealPortion",
+    "content": "Du hast einen Heiltrank benutzt und wieder volle Gesundheit"
+  },
+  {
+    "id": "noEntry",
+    "content": "Dort gibt es keinen Durchgang"
+  },
+  {
+    "id": "noEnemy",
+    "content": "Es gibt keinen Feind zum angreifen"
+  },
+  {
+    "id": "newRoom",
+    "content": "Du betrittst einen neuen Raum"
+  },
+  {
+    "id": "noHealPortion",
+    "content": "Du hast keinen Heiltrank im Inventar"
+  },
+  {
+    "id": "enemyDead",
+    "content": "Du hast den Feind besiegt, du kannst den Raum nun verlassen"
+  },
+  {
+    "id": "attackEnemy",
+    "content": "Du attackierst den Gegner, seine Gesundheit liegt bei: <span class=\"lifepoints\">"
+  },
+  {
+    "id": "enemyAttacksYou",
+    "content": "Der Gegner greift dich an, deine Gesundheit liegt bei: <span class=\"lifepoints\">"
+  },
+  {
     "id": "helpContent",
-    "content": "Benutze die folgende Befehle: <br> <br> <span> umschauen </span>- um dich im Raum umzusehen. <br> <span> Inventar</span> - um dein Inventar zu sehen <br> <span>einstecken [ITEM]</span> - um ein Objekt in dein Inventar zu stecken, welches du beim umschauen gefunden hast. <br> <span>benutzen [ITEM]</span> - um ein Objekt aus deinem Inventar zu benutzen. <br> <span>gehe [RICHTUNG]</span> - um in den nächsten Raum zu gehen"
+    "content": "Benutze die folgende Befehle: <br> <br> <span> umschauen </span>- um dich im Raum umzusehen. <br> <span> Inventar</span> - um dein Inventar zu sehen <br> <span>einstecken</span> - um ein Objekt in dein Inventar zu stecken. <br> <span>Heiltrank</span> - um ein Heitrank aus deinem Inventar zu benutzen, falls vorhanden. <br> <span>gehe [RICHTUNG]</span> - um in den nächsten Raum zu gehen (links, rechts, geradeaus)."
   },
   {
     "id": "title",
@@ -41,6 +73,6 @@
   },
   {
     "id": "intro2",
-    "content": "Was soll ich hier nun machen (tippe:<span> hilfe </span>)? Ich sollte mich am besten mal umschauen (tippe <span> umschauen </span>). Vielleicht finde ich ja etwas nützliches für was ich einstecken (tippe: <span>einstecken [ITEM]</span>) oder benutzen kann (tippe: <span>benutzen [ITEM] </span>). Außerdem sollte ich mal nachschauen, was ich alles in den Taschen habe (tippe: <span>inventar</span>)."
+    "content": "Was soll ich hier nun machen? (tippe:<span> hilfe </span>) Ich sollte mich am besten mal umschauen (tippe <span> umschauen </span>). Vielleicht finde ich ja etwas nützliches für was ich einstecken kann. (tippe: <span>einstecken</span>) Ich habe einen Heiltrank, damit kann ich mich heilen (tippe: <span>Heiltrank</span>). Außerdem sollte ich mal nachschauen, ob ich sonst noch was in den Taschen habe (tippe: <span>inventar</span>)."
   }
 ]

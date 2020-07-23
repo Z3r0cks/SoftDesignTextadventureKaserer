@@ -1,48 +1,57 @@
 /// <reference path="./Item.ts" />
 
 namespace Textadventure {
-  interface Weapons extends Item {
+  export abstract class Weapon extends Item {
     name: string;
     strength: number;
+    type: string;
   }
 
-  export class Stick implements Weapons {
+  export class Stick extends Weapon {
     public name: string = "Stock";
     public strength: number = 2;
+    public type: string = "Weapon";
   }
 
-  export class RostySword implements Weapons {
+  export class RostySword extends Weapon {
     public name: string = "Rostiges Schwert";
     public strength: number = 3;
+    public type: string = "Weapon";
   }
 
-  export class NobleSword implements Weapons {
+  export class NobleSword extends Weapon {
     public name: string = "Edles Schwert";
     public strength: number = 4;
+    public type: string = "Weapon";
   }
 
-  export class Sword implements Weapons {
+  export class Sword extends Weapon {
     public name: string = "Schwert";
     public strength: number = 3;
+    public type: string = "Weapon";
   }
 
-  export class Mace implements Weapons {
+  export class Mace extends Weapon {
     public name: string = "Streitkolben";
     public strength: number = 4;
+    public type: string = "Weapon";
   }
 
-  export class LongSword implements Weapons {
+  export class LongSword extends Weapon {
     public name: string = "Langschwert";
     public strength: number = 6;
+    public type: string = "Weapon";
   }
 
-  export class BastardSword implements Weapons {
+  export class BastardSword extends Weapon {
     public name: string = "Bastardschwert";
     public strength: number = 8;
+    public type: string = "Weapon";
   }
 
-  export class HolySword implements Weapons {
+  export class HolySword extends Weapon {
     public name: string = "Heiliges Schwert";
     public strength: number = 9999;
+    public type: string = "Weapon";
   }
 }

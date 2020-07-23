@@ -1,23 +1,24 @@
 namespace Textadventure {
   export function checkInput(_input: string): boolean {
+    const lowerInput: string = _input.toLocaleLowerCase();
     let isCorrect: boolean = false;
     let allowInput: string[] = [];
     switch (gameStage) {
 
       case "start":
-        if (_input == "n" || _input == "l" || _input == "b")
+        if (lowerInput == "n" || lowerInput == "l" || lowerInput == "b")
           isCorrect = true;
         break;
 
       case "loadGame":
-        if (_input == "b")
+        if (lowerInput == "b")
           isCorrect = true;
         break;
 
       case "inGame":
-        allowInput.push("hilfe", "umschauen", "inventar", "inventrar", "einstecken", "benutzen", "gehen");
+        allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen");
         for (let i: number = 0; i < allowInput.length; i++) {
-          if (_input == allowInput[i]) {
+          if (lowerInput == allowInput[i]) {
             isCorrect = true;
             break;
           }

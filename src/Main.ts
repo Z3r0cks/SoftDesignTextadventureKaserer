@@ -1,7 +1,8 @@
 /// <reference path="./Rooms/CreateRooms.ts" />
+/// <reference path="./Creatures/Player.ts" />
 /// <reference path="./CreateConsole/ConsoleOutput.ts" />
 /// <reference path="./Inventar.ts" />
-/// <reference path="./Items/Item.ts" />
+/// <reference path="./Items/HealPortion.ts" />
 /// <reference path="./Items/Armor.ts" />
 /// <reference path="./Items/Weapon.ts" />
 
@@ -9,7 +10,8 @@ namespace Textadventure {
   export let currentRoom: Room;
   export let gameStage: string = "start";
   export let storyboard: GetStory[];
-  export let inventar: Inventar = new Inventar([]);
+  export let player: Player = new Player(100, new Stick);
+  export let inventar: Inventar = new Inventar([new HealPortion]);
 
   (async function Main(): Promise<void> {
     storyboard = await (await fetch("./contentElement.json")).json();

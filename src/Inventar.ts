@@ -7,8 +7,20 @@ namespace Textadventure {
       this.currentInventar = _currentInventar;
     }
 
-    public addItem(_newItem: Item): void {
-      inventar.currentInventar.push(_newItem);
+    static removeItem(_ItemToRemove: Item): void {
+      const item: number = inventar.currentInventar.indexOf(_ItemToRemove);
+      inventar.currentInventar.splice(item, 1);
+    }
+
+    public addItem(_newItem: Item): string {
+      if ((_newItem as Weapon).type == "Weapon") {
+        player.changeWeapon((_newItem as Weapon));
+        return "weapon";
+      }
+      else {
+        inventar.currentInventar.push(_newItem);
+        return "noWeapon";
+      }
     }
   }
 }

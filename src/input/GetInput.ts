@@ -9,8 +9,8 @@ namespace Textadventure {
           const thisConsoleId: string = "consoleInput input";
           let theInputValue: string;
           const theInputElement: HTMLInputElement = (document.getElementById(thisConsoleId) as HTMLInputElement);
-          theInputValue = theInputElement.value;
-          document.body.removeEventListener("keypress", eventlistener);
+          theInputValue = theInputElement.value,
+            document.body.removeEventListener("keypress", eventlistener);
 
           if (checkInput(theInputElement.value)) {
             theInputElement.value = "";
