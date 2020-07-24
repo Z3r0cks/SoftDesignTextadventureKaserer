@@ -34,30 +34,32 @@ namespace Textadventure {
 
 
     static changeRoom(_direction: string): void {
-      const leftRoom: Room | boolean = currentRoom.posLeft;
-      const rightRoom: Room | boolean = currentRoom.posRight;
-      const forwardRoom: Room | boolean = currentRoom.posForward;
+      if (currentRoom.roomEnemy == false) {
+        const leftRoom: Room | boolean = currentRoom.posLeft;
+        const rightRoom: Room | boolean = currentRoom.posRight;
+        const forwardRoom: Room | boolean = currentRoom.posForward;
 
-      if (_direction == "left") {
-        if (leftRoom != false) {
-          currentRoom = (leftRoom as Room);
-          ConsoleOutput.filterConsoleType("trueWay");
-        } else ConsoleOutput.filterConsoleType("falseWay");
-      }
+        if (_direction == "left") {
+          if (leftRoom != false) {
+            currentRoom = (leftRoom as Room);
+            ConsoleOutput.filterConsoleType("trueWay");
+          } else ConsoleOutput.filterConsoleType("falseWay");
+        }
 
-      else if (_direction == "right") {
-        if (rightRoom != false) {
-          currentRoom = (rightRoom as Room);
-          ConsoleOutput.filterConsoleType("trueWay");
-        } else ConsoleOutput.filterConsoleType("falseWay");
-      }
+        else if (_direction == "right") {
+          if (rightRoom != false) {
+            currentRoom = (rightRoom as Room);
+            ConsoleOutput.filterConsoleType("trueWay");
+          } else ConsoleOutput.filterConsoleType("falseWay");
+        }
 
-      else if (_direction == "forward") {
-        if (forwardRoom != false) {
-          currentRoom = (forwardRoom as Room);
-          ConsoleOutput.filterConsoleType("trueWay");
-        } else ConsoleOutput.filterConsoleType("falseWay");
-      }
+        else if (_direction == "forward") {
+          if (forwardRoom != false) {
+            currentRoom = (forwardRoom as Room);
+            ConsoleOutput.filterConsoleType("trueWay");
+          } else ConsoleOutput.filterConsoleType("falseWay");
+        }
+      } else ConsoleOutput.filterConsoleType("enemyInRoom");
     }
 
     public removeItemFromRoom(): void {

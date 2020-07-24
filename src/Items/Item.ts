@@ -1,6 +1,6 @@
 namespace Textadventure {
   export abstract class Item {
-    name: string;
+    public name: string;
 
     static getRoomItem(): Item | boolean {
       return currentRoom.roomItem;

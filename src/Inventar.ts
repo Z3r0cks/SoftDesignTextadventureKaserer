@@ -13,9 +13,13 @@ namespace Textadventure {
     }
 
     public addItem(_newItem: Item): string {
-      if ((_newItem as Weapon).type == "Weapon") {
+      if ((_newItem as Weapon).type == "weapon") {
         player.changeWeapon((_newItem as Weapon));
         return "weapon";
+      }
+      else if ((_newItem as Armor).type == "armor") {
+        player.changeArmor((_newItem as Armor));
+        return "armor";
       }
       else {
         inventar.currentInventar.push(_newItem);

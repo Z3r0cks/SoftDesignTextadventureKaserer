@@ -1,12 +1,5 @@
 namespace Textadventure {
   export abstract class ConsoleOutput {
-    // currentDiv: string;
-    // nextRoom: string;
-
-    // public constructor(_currentDiv: string, _nextRoom: string) {
-    //   this.currentDiv = _currentDiv;
-    //   this.nextRoom = _nextRoom;
-    // }
 
     static filterConsoleType(_inputElement: string): void {
       const inputLowerElement: string = _inputElement.toLocaleLowerCase();
@@ -25,7 +18,6 @@ namespace Textadventure {
         document.getElementById("consoleInput input").focus();
       }
     }
-
 
     /////////////////////// StartMenu //////////////////////////////
 
@@ -111,6 +103,7 @@ namespace Textadventure {
           const eventString: string = (roomEvent != false) ? (currentRoom.roomEvent as Event).story : "";
           const enemyString: string = (roomEnemy != false) ? "einen <span class=\"enemy\">" + (currentRoom.roomEnemy as Creature).type + " </span> als" : "kein";
           let wayString: String = "<br> Du siehst folgende Wege: <br>";
+          Event.executeEvent();
 
           if (Room.findWay("left"))
             wayString = wayString + "Links<br>";
@@ -122,6 +115,7 @@ namespace Textadventure {
             wayString = wayString + "Keinen";
 
           firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString + wayString;
+          currentRoom.roomEvent = false;
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
@@ -139,12 +133,15 @@ namespace Textadventure {
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
-
+        // TODO:
         case ("einstecken"):
           if (currentRoom.roomItem != false) {
             const currentRoomItem: string = (currentRoom.roomItem as Item).name;
             let dropNotificationString: string = "";
-            if (inventar.addItem((currentRoom.roomItem as Item)) == "weapon") {
+            if (inventar.addItem((currentRoom.roomItem as Item)) == "armor") {
+              dropNotificationString = "Du lässt deine aktuelle Rüstung fallen. <br>";
+            }
+            else if (inventar.addItem((currentRoom.roomItem as Item)) == "weapon") {
               dropNotificationString = "Du lässt deine aktuelle Waffe fallen. <br>";
             } else {
               currentRoom.removeItemFromRoom();
@@ -161,6 +158,7 @@ namespace Textadventure {
         case ("heiltrank"):
           if (HealPortion.useHealPortion())
             firstDiv.innerHTML = SearchContent.search("useHealPortion");
+
           else firstDiv.innerHTML = SearchContent.search("noHealPortion");
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
@@ -176,9 +174,27 @@ namespace Textadventure {
           Room.changeRoom("forward");
           break;
 
+        case ("gehe zurück"):
+          firstDiv.innerHTML = SearchContent.search("noReturn");
+          allElements.push(firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          break;
+
         case ("trueway"):
           firstDiv.innerHTML = SearchContent.search("newRoom");
           allElements.push(seperatorDiv, firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          break;
+
+        case ("gesundheit"):
+          firstDiv.innerHTML = "Deine aktuelle Gesundheit liegt bei <span class=\"lifepoints\">" + player.hp + "</span> HP";
+          allElements.push(firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          break;
+
+        case ("enemyinroom"):
+          firstDiv.innerHTML = SearchContent.search("enemyInRoom");
+          allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
 

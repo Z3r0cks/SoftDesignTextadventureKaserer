@@ -10,7 +10,7 @@ namespace Textadventure {
   export let currentRoom: Room;
   export let gameStage: string = "start";
   export let storyboard: GetStory[];
-  export let player: Player = new Player(100, new Stick);
+  export let player: Player = new Player(100, new Stick, new Clothing);
   export let inventar: Inventar = new Inventar([new HealPortion]);
 
   (async function Main(): Promise<void> {

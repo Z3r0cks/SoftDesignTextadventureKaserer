@@ -10,9 +10,13 @@ var Textadventure;
             Textadventure.inventar.currentInventar.splice(item, 1);
         }
         addItem(_newItem) {
-            if (_newItem.type == "Weapon") {
+            if (_newItem.type == "weapon") {
                 Textadventure.player.changeWeapon(_newItem);
                 return "weapon";
+            }
+            else if (_newItem.type == "armor") {
+                Textadventure.player.changeArmor(_newItem);
+                return "armor";
             }
             else {
                 Textadventure.inventar.currentInventar.push(_newItem);
@@ -44,33 +48,37 @@ var Textadventure;
             }
         }
         static changeRoom(_direction) {
-            const leftRoom = Textadventure.currentRoom.posLeft;
-            const rightRoom = Textadventure.currentRoom.posRight;
-            const forwardRoom = Textadventure.currentRoom.posForward;
-            if (_direction == "left") {
-                if (leftRoom != false) {
-                    Textadventure.currentRoom = leftRoom;
-                    Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+            if (Textadventure.currentRoom.roomEnemy == false) {
+                const leftRoom = Textadventure.currentRoom.posLeft;
+                const rightRoom = Textadventure.currentRoom.posRight;
+                const forwardRoom = Textadventure.currentRoom.posForward;
+                if (_direction == "left") {
+                    if (leftRoom != false) {
+                        Textadventure.currentRoom = leftRoom;
+                        Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+                    }
+                    else
+                        Textadventure.ConsoleOutput.filterConsoleType("falseWay");
                 }
-                else
-                    Textadventure.ConsoleOutput.filterConsoleType("falseWay");
-            }
-            else if (_direction == "right") {
-                if (rightRoom != false) {
-                    Textadventure.currentRoom = rightRoom;
-                    Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+                else if (_direction == "right") {
+                    if (rightRoom != false) {
+                        Textadventure.currentRoom = rightRoom;
+                        Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+                    }
+                    else
+                        Textadventure.ConsoleOutput.filterConsoleType("falseWay");
                 }
-                else
-                    Textadventure.ConsoleOutput.filterConsoleType("falseWay");
-            }
-            else if (_direction == "forward") {
-                if (forwardRoom != false) {
-                    Textadventure.currentRoom = forwardRoom;
-                    Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+                else if (_direction == "forward") {
+                    if (forwardRoom != false) {
+                        Textadventure.currentRoom = forwardRoom;
+                        Textadventure.ConsoleOutput.filterConsoleType("trueWay");
+                    }
+                    else
+                        Textadventure.ConsoleOutput.filterConsoleType("falseWay");
                 }
-                else
-                    Textadventure.ConsoleOutput.filterConsoleType("falseWay");
             }
+            else
+                Textadventure.ConsoleOutput.filterConsoleType("enemyInRoom");
         }
         removeItemFromRoom() {
             this.roomItem = false;
@@ -92,6 +100,18 @@ var Textadventure;
         static getRoomEvent() {
             return Textadventure.currentRoom.roomEvent;
         }
+        static executeEvent() {
+            if (Textadventure.currentRoom.roomEvent) {
+                switch (Textadventure.currentRoom.roomEvent.type) {
+                    case "HealEvent":
+                        Textadventure.player.hp = 100;
+                        break;
+                    default:
+                        Textadventure.player.hp = Textadventure.player.hp - 10;
+                        break;
+                }
+            }
+        }
     }
     Textadventure.Event = Event;
 })(Textadventure || (Textadventure = {}));
@@ -103,9 +123,23 @@ var Textadventure;
         constructor() {
             super(...arguments);
             this.story = "Du findest einen Heilbrunnen im Raum und heilst dich vollständig.";
+            this.type = "HealEvent";
         }
     }
     Textadventure.HealEvent = HealEvent;
+})(Textadventure || (Textadventure = {}));
+/// <reference path="./Event.ts" />
+var Textadventure;
+/// <reference path="./Event.ts" />
+(function (Textadventure) {
+    class DamageEvent extends Textadventure.Event {
+        constructor() {
+            super(...arguments);
+            this.story = "Du läufst in eine Falle und verlierst etwas Gesundheit.";
+            this.type = "DamageEvent";
+        }
+    }
+    Textadventure.DamageEvent = DamageEvent;
 })(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
@@ -134,20 +168,6 @@ var Textadventure;
     }
     Textadventure.Creature = Creature;
 })(Textadventure || (Textadventure = {}));
-/// <reference path="./Creature.ts" />
-var Textadventure;
-/// <reference path="./Creature.ts" />
-(function (Textadventure) {
-    class Goblin extends Textadventure.Creature {
-        constructor() {
-            super(...arguments);
-            this.hp = 7;
-            this.type = "Goblin";
-            this.weapon = new Textadventure.Stick;
-        }
-    }
-    Textadventure.Goblin = Goblin;
-})(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
     class Item {
@@ -161,81 +181,172 @@ var Textadventure;
 var Textadventure;
 /// <reference path="./Item.ts" />
 (function (Textadventure) {
+    class Armor extends Textadventure.Item {
+    }
+    Textadventure.Armor = Armor;
+    class Clothing extends Armor {
+        constructor() {
+            super();
+            this.name = "Stoffkeidung";
+            this.defense = 1;
+            this.type = "armor";
+        }
+    }
+    Textadventure.Clothing = Clothing;
+    class LeatherClothing extends Armor {
+        constructor() {
+            super();
+            this.name = "Lederrüstung";
+            this.defense = 3;
+            this.type = "armor";
+        }
+    }
+    Textadventure.LeatherClothing = LeatherClothing;
+    class Woodarmor extends Armor {
+        constructor() {
+            super();
+            this.name = "Holzrüstung";
+            this.defense = 6;
+            this.type = "armor";
+        }
+    }
+    Textadventure.Woodarmor = Woodarmor;
+    class PlateArmor extends Armor {
+        constructor() {
+            super();
+            this.name = "Plattenpanzer";
+            this.defense = 20;
+            this.type = "armor";
+        }
+    }
+    Textadventure.PlateArmor = PlateArmor;
+    class HolyArmor extends Armor {
+        constructor() {
+            super();
+            this.name = "Heilige";
+            this.defense = 99999;
+            this.type = "armor";
+        }
+    }
+    Textadventure.HolyArmor = HolyArmor;
+})(Textadventure || (Textadventure = {}));
+/// <reference path="./Item.ts" />
+var Textadventure;
+/// <reference path="./Item.ts" />
+(function (Textadventure) {
     class Weapon extends Textadventure.Item {
     }
     Textadventure.Weapon = Weapon;
     class Stick extends Weapon {
         constructor() {
-            super(...arguments);
-            this.name = "Stock";
+            super();
+            this.name = "stock";
             this.strength = 2;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.Stick = Stick;
     class RostySword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Rostiges Schwert";
             this.strength = 3;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.RostySword = RostySword;
     class NobleSword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Edles Schwert";
             this.strength = 4;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.NobleSword = NobleSword;
     class Sword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Schwert";
             this.strength = 3;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.Sword = Sword;
     class Mace extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Streitkolben";
             this.strength = 4;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.Mace = Mace;
     class LongSword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Langschwert";
             this.strength = 6;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.LongSword = LongSword;
     class BastardSword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Bastardschwert";
             this.strength = 8;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.BastardSword = BastardSword;
     class HolySword extends Weapon {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Heiliges Schwert";
             this.strength = 9999;
-            this.type = "Weapon";
+            this.type = "weapon";
         }
     }
     Textadventure.HolySword = HolySword;
+})(Textadventure || (Textadventure = {}));
+/// <reference path="./Creature.ts" />
+/// <reference path="../Items/Armor.ts" />
+/// <reference path="../Items/Weapon.ts" />
+var Textadventure;
+/// <reference path="./Creature.ts" />
+/// <reference path="../Items/Armor.ts" />
+/// <reference path="../Items/Weapon.ts" />
+(function (Textadventure) {
+    class Goblin extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 7;
+            this.type = "Goblin";
+            this.weapon = new Textadventure.Stick;
+            this.armor = new Textadventure.Clothing;
+        }
+    }
+    Textadventure.Goblin = Goblin;
+    class Skeleton extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 13;
+            this.type = "Skelett";
+            this.weapon = new Textadventure.RostySword;
+        }
+    }
+    Textadventure.Skeleton = Skeleton;
+    class Vampir extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 25;
+            this.type = "Vampir";
+            this.weapon = new Textadventure.NobleSword;
+            this.armor = new Textadventure.LeatherClothing;
+        }
+    }
+    Textadventure.Vampir = Vampir;
 })(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
@@ -260,6 +371,7 @@ var Textadventure;
             for (let i = 0; i < Textadventure.inventar.currentInventar.length; i++) {
                 if (Textadventure.inventar.currentInventar[i].name == "Heiltrank") {
                     Textadventure.Inventar.removeItem(Textadventure.inventar.currentInventar[i]);
+                    Textadventure.player.hp = 100;
                     return true;
                 }
             }
@@ -270,21 +382,23 @@ var Textadventure;
 })(Textadventure || (Textadventure = {}));
 /// <reference path="./Room.ts" />
 /// <reference path="../Events/HealEvent.ts" />
-/// <reference path="../Creatures/Goblin.ts" />
+/// <reference path="../Events/DamageEvent.ts" />
+/// <reference path="../Creatures/EnemyClasses.ts" />
 /// <reference path="../Items/Weapon.ts" />
 /// <reference path="../Items/HealPortion.ts" />
 var Textadventure;
 /// <reference path="./Room.ts" />
 /// <reference path="../Events/HealEvent.ts" />
-/// <reference path="../Creatures/Goblin.ts" />
+/// <reference path="../Events/DamageEvent.ts" />
+/// <reference path="../Creatures/EnemyClasses.ts" />
 /// <reference path="../Items/Weapon.ts" />
 /// <reference path="../Items/HealPortion.ts" />
 (function (Textadventure) {
     // export let allRooms: Room[] = [];
     // create rooms
-    // constructor(_roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
+    // constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
     // A-Rooms
-    Textadventure.a1 = new Textadventure.Room("a1", new Textadventure.HealEvent, new Textadventure.Goblin, new Textadventure.Sword);
+    Textadventure.a1 = new Textadventure.Room("a1", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.Clothing);
     Textadventure.a2 = new Textadventure.Room("a2", false, false, false);
     Textadventure.a3 = new Textadventure.Room("a3", new Textadventure.HealEvent, new Textadventure.Goblin, false);
     Textadventure.a4 = new Textadventure.Room("a4", new Textadventure.HealEvent, new Textadventure.Goblin, false); //TODO: OneWay
@@ -402,15 +516,20 @@ var Textadventure;
 /// <reference path="./Creature.ts" />
 (function (Textadventure) {
     class Player extends Textadventure.Creature {
-        constructor(_hp, _weapon) {
+        constructor(_hp, _weapon, _armor) {
             super();
             this.type = "player";
             this.hp = _hp;
             this.weapon = _weapon;
+            this.armor = _armor;
         }
         changeWeapon(_weapon) {
             Textadventure.currentRoom.roomItem = Textadventure.player.weapon;
             this.weapon = _weapon;
+        }
+        changeArmor(_armor) {
+            Textadventure.currentRoom.roomItem = Textadventure.player.armor;
+            this.armor = _armor;
         }
     }
     Textadventure.Player = Player;
@@ -418,12 +537,6 @@ var Textadventure;
 var Textadventure;
 (function (Textadventure) {
     class ConsoleOutput {
-        // currentDiv: string;
-        // nextRoom: string;
-        // public constructor(_currentDiv: string, _nextRoom: string) {
-        //   this.currentDiv = _currentDiv;
-        //   this.nextRoom = _nextRoom;
-        // }
         static filterConsoleType(_inputElement) {
             const inputLowerElement = _inputElement.toLocaleLowerCase();
             if (document.body.querySelector(".warn-div")) {
@@ -515,6 +628,7 @@ var Textadventure;
                     const eventString = (roomEvent != false) ? Textadventure.currentRoom.roomEvent.story : "";
                     const enemyString = (roomEnemy != false) ? "einen <span class=\"enemy\">" + Textadventure.currentRoom.roomEnemy.type + " </span> als" : "kein";
                     let wayString = "<br> Du siehst folgende Wege: <br>";
+                    Textadventure.Event.executeEvent();
                     if (Textadventure.Room.findWay("left"))
                         wayString = wayString + "Links<br>";
                     if (Textadventure.Room.findWay("right"))
@@ -524,6 +638,7 @@ var Textadventure;
                     if (!Textadventure.Room.findWay("forward") && !Textadventure.Room.findWay("left") && Textadventure.Room.findWay("right"))
                         wayString = wayString + "Keinen";
                     firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString + wayString;
+                    Textadventure.currentRoom.roomEvent = false;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
@@ -540,11 +655,15 @@ var Textadventure;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
+                // TODO:
                 case ("einstecken"):
                     if (Textadventure.currentRoom.roomItem != false) {
                         const currentRoomItem = Textadventure.currentRoom.roomItem.name;
                         let dropNotificationString = "";
-                        if (Textadventure.inventar.addItem(Textadventure.currentRoom.roomItem) == "weapon") {
+                        if (Textadventure.inventar.addItem(Textadventure.currentRoom.roomItem) == "armor") {
+                            dropNotificationString = "Du lässt deine aktuelle Rüstung fallen. <br>";
+                        }
+                        else if (Textadventure.inventar.addItem(Textadventure.currentRoom.roomItem) == "weapon") {
                             dropNotificationString = "Du lässt deine aktuelle Waffe fallen. <br>";
                         }
                         else {
@@ -575,9 +694,24 @@ var Textadventure;
                 case ("gehe geradeaus"):
                     Textadventure.Room.changeRoom("forward");
                     break;
+                case ("gehe zurück"):
+                    firstDiv.innerHTML = Textadventure.SearchContent.search("noReturn");
+                    allElements.push(firstDiv, inputField);
+                    ConsoleOutput.deleteConsole(_inputLowerElement);
+                    break;
                 case ("trueway"):
                     firstDiv.innerHTML = Textadventure.SearchContent.search("newRoom");
                     allElements.push(seperatorDiv, firstDiv, inputField);
+                    ConsoleOutput.deleteConsole(_inputLowerElement);
+                    break;
+                case ("gesundheit"):
+                    firstDiv.innerHTML = "Deine aktuelle Gesundheit liegt bei <span class=\"lifepoints\">" + Textadventure.player.hp + "</span> HP";
+                    allElements.push(firstDiv, inputField);
+                    ConsoleOutput.deleteConsole(_inputLowerElement);
+                    break;
+                case ("enemyinroom"):
+                    firstDiv.innerHTML = Textadventure.SearchContent.search("enemyInRoom");
+                    allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
                 case ("angreifen"):
@@ -634,46 +768,6 @@ var Textadventure;
     }
     Textadventure.ConsoleOutput = ConsoleOutput;
 })(Textadventure || (Textadventure = {}));
-/// <reference path="./Item.ts" />
-var Textadventure;
-/// <reference path="./Item.ts" />
-(function (Textadventure) {
-    class Clothing {
-        constructor() {
-            this.name = "Stoffkeidung";
-            this.defense = 1;
-        }
-    }
-    Textadventure.Clothing = Clothing;
-    class LeatherClothing {
-        constructor() {
-            this.name = "Lederrüstung";
-            this.defense = 3;
-        }
-    }
-    Textadventure.LeatherClothing = LeatherClothing;
-    class Woodarmor {
-        constructor() {
-            this.name = "Holzrüstung";
-            this.defense = 6;
-        }
-    }
-    Textadventure.Woodarmor = Woodarmor;
-    class PlateArmor {
-        constructor() {
-            this.name = "Plattenpanzer";
-            this.defense = 20;
-        }
-    }
-    Textadventure.PlateArmor = PlateArmor;
-    class HolyArmor {
-        constructor() {
-            this.name = "Heilige Rüstung";
-            this.defense = 99999;
-        }
-    }
-    Textadventure.HolyArmor = HolyArmor;
-})(Textadventure || (Textadventure = {}));
 /// <reference path="./Rooms/CreateRooms.ts" />
 /// <reference path="./Creatures/Player.ts" />
 /// <reference path="./CreateConsole/ConsoleOutput.ts" />
@@ -691,7 +785,7 @@ var Textadventure;
 /// <reference path="./Items/Weapon.ts" />
 (function (Textadventure) {
     Textadventure.gameStage = "start";
-    Textadventure.player = new Textadventure.Player(100, new Textadventure.Stick);
+    Textadventure.player = new Textadventure.Player(100, new Textadventure.Stick, new Textadventure.Clothing);
     Textadventure.inventar = new Textadventure.Inventar([new Textadventure.HealPortion]);
     (async function Main() {
         Textadventure.storyboard = await (await fetch("./contentElement.json")).json();
@@ -718,23 +812,61 @@ var Textadventure;
     }
     Textadventure.SearchContent = SearchContent;
 })(Textadventure || (Textadventure = {}));
+/// <reference path="../Items/Weapon.ts" />
+/// <reference path="../Items/Armor.ts" />
+var Textadventure;
+/// <reference path="../Items/Weapon.ts" />
+/// <reference path="../Items/Armor.ts" />
+(function (Textadventure) {
+    class Gilbad extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 65;
+            this.name = "Gilbad der Goblin";
+            this.type = "Boss";
+            this.weapon = new Textadventure.Sword;
+            this.armor = new Textadventure.Clothing;
+        }
+    }
+    Textadventure.Gilbad = Gilbad;
+    class Valentine extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 135;
+            this.name = "Valentine der Vampir";
+            this.type = "Boss";
+            this.weapon = new Textadventure.LongSword;
+            this.armor = new Textadventure.Clothing;
+        }
+    }
+    Textadventure.Valentine = Valentine;
+    class Skull extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 205;
+            this.name = "Skull das Skelett";
+            this.type = "Boss";
+            this.weapon = new Textadventure.Mace;
+        }
+    }
+    Textadventure.Skull = Skull;
+    class Gabriel extends Textadventure.Creature {
+        constructor() {
+            super();
+            this.hp = 205;
+            this.name = "Gabriel";
+            this.type = "EndBoss";
+            this.weapon = new Textadventure.HolySword;
+            this.armor = new Textadventure.HolyArmor;
+        }
+    }
+    Textadventure.Gabriel = Gabriel;
+})(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
     class DamageEffect {
     }
     Textadventure.DamageEffect = DamageEffect;
-})(Textadventure || (Textadventure = {}));
-/// <reference path="./Event.ts" />
-var Textadventure;
-/// <reference path="./Event.ts" />
-(function (Textadventure) {
-    class DamageEvent extends Textadventure.Event {
-        constructor() {
-            super(...arguments);
-            this.story = "Du läufst in eine Falle und verlierst etwas Gesundheit.";
-        }
-    }
-    Textadventure.DamageEvent = DamageEvent;
 })(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
@@ -752,7 +884,7 @@ var Textadventure;
                     isCorrect = true;
                 break;
             case "inGame":
-                allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen");
+                allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen", "enemyinroom", "gehe zurück", "gesundheit");
                 for (let i = 0; i < allowInput.length; i++) {
                     if (lowerInput == allowInput[i]) {
                         isCorrect = true;

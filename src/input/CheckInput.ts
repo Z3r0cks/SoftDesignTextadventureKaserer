@@ -16,7 +16,7 @@ namespace Textadventure {
         break;
 
       case "inGame":
-        allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen");
+        allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen", "enemyinroom", "gehe zurück", "gesundheit");
         for (let i: number = 0; i < allowInput.length; i++) {
           if (lowerInput == allowInput[i]) {
             isCorrect = true;

@@ -2,56 +2,112 @@
 
 namespace Textadventure {
   export abstract class Weapon extends Item {
-    name: string;
-    strength: number;
-    type: string;
+    public name: string;
+    public strength: number;
+    public type: string;
   }
 
   export class Stick extends Weapon {
-    public name: string = "Stock";
-    public strength: number = 2;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "stock";
+      this.strength = 2;
+      this.type = "weapon";
+    }
   }
 
   export class RostySword extends Weapon {
-    public name: string = "Rostiges Schwert";
-    public strength: number = 3;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Rostiges Schwert";
+      this.strength = 3;
+      this.type = "weapon";
+    }
   }
 
   export class NobleSword extends Weapon {
-    public name: string = "Edles Schwert";
-    public strength: number = 4;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Edles Schwert";
+      this.strength = 4;
+      this.type = "weapon";
+    }
   }
 
   export class Sword extends Weapon {
-    public name: string = "Schwert";
-    public strength: number = 3;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Schwert";
+      this.strength = 3;
+      this.type = "weapon";
+    }
   }
 
   export class Mace extends Weapon {
-    public name: string = "Streitkolben";
-    public strength: number = 4;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Streitkolben";
+      this.strength = 4;
+      this.type = "weapon";
+    }
   }
 
   export class LongSword extends Weapon {
-    public name: string = "Langschwert";
-    public strength: number = 6;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Langschwert";
+      this.strength = 6;
+      this.type = "weapon";
+    }
   }
 
   export class BastardSword extends Weapon {
-    public name: string = "Bastardschwert";
-    public strength: number = 8;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Bastardschwert";
+      this.strength = 8;
+      this.type = "weapon";
+    }
   }
 
   export class HolySword extends Weapon {
-    public name: string = "Heiliges Schwert";
-    public strength: number = 9999;
-    public type: string = "Weapon";
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Heiliges Schwert";
+      this.strength = 9999;
+      this.type = "weapon";
+    }
   }
 }

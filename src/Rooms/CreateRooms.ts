@@ -1,6 +1,7 @@
 /// <reference path="./Room.ts" />
 /// <reference path="../Events/HealEvent.ts" />
-/// <reference path="../Creatures/Goblin.ts" />
+/// <reference path="../Events/DamageEvent.ts" />
+/// <reference path="../Creatures/EnemyClasses.ts" />
 /// <reference path="../Items/Weapon.ts" />
 /// <reference path="../Items/HealPortion.ts" />
 
@@ -8,10 +9,10 @@ namespace Textadventure {
   // export let allRooms: Room[] = [];
 
   // create rooms
-  // constructor(_roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
+  // constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
 
   // A-Rooms
-  export const a1: Room = new Room("a1", new HealEvent, new Goblin, new Sword);
+  export const a1: Room = new Room("a1", new DamageEvent, new Goblin, new Clothing);
   export const a2: Room = new Room("a2", false, false, false);
   export const a3: Room = new Room("a3", new HealEvent, new Goblin, false);
   export const a4: Room = new Room("a4", new HealEvent, new Goblin, false); //TODO: OneWay

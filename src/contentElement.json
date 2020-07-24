@@ -40,6 +40,14 @@
     "content": "Es gibt keinen Feind zum angreifen"
   },
   {
+    "id": "enemyInRoom",
+    "content": "Du kannst nicht weiter so lange ein Feind im Weg steht"
+  },
+  {
+    "id": "noReturn",
+    "content": "Die Tür hinter dir ist versiegelt, du kannst nur weiter gehen."
+  },
+  {
     "id": "newRoom",
     "content": "Du betrittst einen neuen Raum"
   },
@@ -65,7 +73,7 @@
   },
   {
     "id": "title",
-    "content": "Ich bin ein lustiger Adventure-Titel sein  <br> <br>"
+    "content": "Ich soll ein lustiger Adventure-Titel sein  <br> <br>"
   },
   {
     "id": "intro1",

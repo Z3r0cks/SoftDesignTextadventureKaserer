@@ -12,6 +12,7 @@ namespace Textadventure {
 
         if (inventar.currentInventar[i].name == "Heiltrank") {
           Inventar.removeItem(inventar.currentInventar[i]);
+          player.hp = 100;
           return true;
         }
       }
