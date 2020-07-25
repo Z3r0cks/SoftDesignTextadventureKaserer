@@ -28,7 +28,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Lederrüstung";
-      this.defense = 3;
+      this.defense = 2;
       this.type = "armor";
     }
   }
@@ -42,7 +42,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Holzrüstung";
-      this.defense = 6;
+      this.defense = 3;
       this.type = "armor";
     }
   }
@@ -55,7 +55,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Plattenpanzer";
-      this.defense = 20;
+      this.defense = 5;
       this.type = "armor";
     }
   }
@@ -67,7 +67,7 @@ namespace Textadventure {
 
     public constructor() {
       super();
-      this.name = "Heilige";
+      this.name = "Heilige Rüstung";
       this.defense = 99999;
       this.type = "armor";
     }

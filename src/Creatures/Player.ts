@@ -23,5 +23,12 @@ namespace Textadventure {
       currentRoom.roomItem = player.armor;
       this.armor = _armor;
     }
+
+    public ifGameOver(): void {
+      if (player.hp <= 0) {
+        gameStage = "gameOver";
+        ConsoleOutput.filterConsoleType("gameover");
+      }
+    }
   }
 }

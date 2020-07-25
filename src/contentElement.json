@@ -32,6 +32,10 @@
     "content": "Du hast einen Heiltrank benutzt und wieder volle Gesundheit"
   },
   {
+    "id": "useIncendiary",
+    "content": "Du hast eine Brandbombe benutzt und dem Gegner 20 Schaden zugefügt"
+  },
+  {
     "id": "noEntry",
     "content": "Dort gibt es keinen Durchgang"
   },
@@ -48,12 +52,16 @@
     "content": "Die Tür hinter dir ist versiegelt, du kannst nur weiter gehen."
   },
   {
+    "id": "canNotSave",
+    "content": "Der Gegner im Raum verhindert, dass du auf die Speichertaste drücken kannst"
+  },
+  {
     "id": "newRoom",
     "content": "Du betrittst einen neuen Raum"
   },
   {
-    "id": "noHealPortion",
-    "content": "Du hast keinen Heiltrank im Inventar"
+    "id": "noUsableItem",
+    "content": "Das hast du nicht in deinem inventar"
   },
   {
     "id": "enemyDead",

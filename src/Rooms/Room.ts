@@ -10,9 +10,9 @@ namespace Textadventure {
 
     public constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean) {
       this.roomName = _roomName;
-      this.roomEnemy = _roomEnemy;
-      this.roomEvent = _roomEvent;
-      this.roomItem = _roomItem;
+      this.roomEnemy = _roomEnemy as Creature;
+      this.roomEvent = _roomEvent as Event;
+      this.roomItem = _roomItem as Item;
     }
 
 

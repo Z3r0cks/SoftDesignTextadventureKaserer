@@ -2,8 +2,9 @@
 /// <reference path="../Events/HealEvent.ts" />
 /// <reference path="../Events/DamageEvent.ts" />
 /// <reference path="../Creatures/EnemyClasses.ts" />
+/// <reference path="../Creatures/BossClasses.ts" />
 /// <reference path="../Items/Weapon.ts" />
-/// <reference path="../Items/HealPortion.ts" />
+/// <reference path="../Items/UsableItems.ts" />
 
 namespace Textadventure {
   // export let allRooms: Room[] = [];
@@ -12,55 +13,55 @@ namespace Textadventure {
   // constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
 
   // A-Rooms
-  export const a1: Room = new Room("a1", new DamageEvent, new Goblin, new Clothing);
-  export const a2: Room = new Room("a2", false, false, false);
-  export const a3: Room = new Room("a3", new HealEvent, new Goblin, false);
-  export const a4: Room = new Room("a4", new HealEvent, new Goblin, false); //TODO: OneWay
-  export const a5: Room = new Room("a5", new HealEvent, new Goblin, false);
-  export const a6: Room = new Room("a6", new HealEvent, new Goblin, false); // TODO: Finish
+  export const a1: Room = new Room("a1", new DamageEvent, new Goblin, new PlateArmor);
+  export const a2: Room = new Room("a2", new DamageEvent, false, new Incendiary);
+  export const a3: Room = new Room("a3", false, false, new HolyArmor);
+  export const a4: Room = new Room("a4", false, false, false); //TODO: OneWay
+  export const a5: Room = new Room("a5", false, false, false);
+  export const a6: Room = new Room("a6", false, false, false); // TODO: Finish
 
   //B-Rooms
-  export const b1: Room = new Room("b1", new HealEvent, new Goblin, false); //TODO: OneWay
-  export const b2: Room = new Room("b2", new HealEvent, new Goblin, false);
-  export const b3: Room = new Room("b3", new HealEvent, new Goblin, false);
-  export const b4: Room = new Room("b4", new HealEvent, new Goblin, false);
-  export const b5: Room = new Room("b5", new HealEvent, new Goblin, false);
-  export const b6: Room = new Room("b6", new HealEvent, new Goblin, false);
+  export const b1: Room = new Room("b1", false, false, false); //TODO: OneWay
+  export const b2: Room = new Room("b2", false, false, new HolyArmor);
+  export const b3: Room = new Room("b3", false, false, false);
+  export const b4: Room = new Room("b4", false, false, false);
+  export const b5: Room = new Room("b5", false, false, false);
+  export const b6: Room = new Room("b6", false, false, false);
 
   //C-Rooms
-  export const c1: Room = new Room("c1", new HealEvent, new Goblin, false);
-  export const c2: Room = new Room("c2", new HealEvent, new Goblin, false);
-  export const c3: Room = new Room("c3", new HealEvent, new Goblin, false); //TODO: OneWay
-  export const c4: Room = new Room("c4", new HealEvent, new Goblin, false);
-  export const c5: Room = new Room("c5", new HealEvent, new Goblin, false);
-  export const c6: Room = new Room("c6", new HealEvent, new Goblin, false); //TODO: OneWay
+  export const c1: Room = new Room("c1", false, false, false);
+  export const c2: Room = new Room("c2", false, false, false);
+  export const c3: Room = new Room("c3", false, false, false); //TODO: OneWay
+  export const c4: Room = new Room("c4", false, false, false);
+  export const c5: Room = new Room("c5", false, false, false);
+  export const c6: Room = new Room("c6", false, false, false); //TODO: OneWay
 
   //D-Rooms
-  export const d1: Room = new Room("d1", new HealEvent, new Goblin, false);
-  export const d2: Room = new Room("d2", new HealEvent, new Goblin, false);
-  export const d3: Room = new Room("d3", new HealEvent, new Goblin, false);
-  export const d4: Room = new Room("d4", new HealEvent, new Goblin, false);
-  export const d5: Room = new Room("d5", new HealEvent, new Goblin, false);
-  export const d6: Room = new Room("d6", new HealEvent, new Goblin, false);
+  export const d1: Room = new Room("d1", false, false, false);
+  export const d2: Room = new Room("d2", false, false, false);
+  export const d3: Room = new Room("d3", false, false, false);
+  export const d4: Room = new Room("d4", false, false, false);
+  export const d5: Room = new Room("d5", false, false, false);
+  export const d6: Room = new Room("d6", false, false, false);
 
   //E-Rooms
-  export const e1: Room = new Room("e1", new HealEvent, new Goblin, false);
-  export const e2: Room = new Room("e2", new HealEvent, new Goblin, false);
-  export const e3: Room = new Room("e3", new HealEvent, new Goblin, false);
-  export const e4: Room = new Room("e4", new HealEvent, new Goblin, false);
-  export const e5: Room = new Room("e5", new HealEvent, new Goblin, false);
-  export const e6: Room = new Room("e6", new HealEvent, new Goblin, false);
+  export const e1: Room = new Room("e1", false, false, false);
+  export const e2: Room = new Room("e2", false, false, false);
+  export const e3: Room = new Room("e3", false, false, false);
+  export const e4: Room = new Room("e4", false, false, false);
+  export const e5: Room = new Room("e5", false, false, false);
+  export const e6: Room = new Room("e6", false, false, false);
 
   //F-Rooms
-  export const f1: Room = new Room("f1", new HealEvent, new Goblin, false);
-  export const f2: Room = new Room("f2", new HealEvent, new Goblin, false);
-  export const f3: Room = new Room("f3", new HealEvent, new Goblin, false);
-  export const f4: Room = new Room("f4", new HealEvent, new Goblin, false);
-  export const f5: Room = new Room("f5", new HealEvent, new Goblin, false); //TODO: OneWay
-  export const f6: Room = new Room("f6", new HealEvent, new Goblin, false);
+  export const f1: Room = new Room("f1", false, false, false);
+  export const f2: Room = new Room("f2", false, false, false);
+  export const f3: Room = new Room("f3", false, false, false);
+  export const f4: Room = new Room("f4", false, false, false);
+  export const f5: Room = new Room("f5", false, false, false); //TODO: OneWay
+  export const f6: Room = new Room("f6", false, false, false);
 
   //G-Rooms
-  export const g1: Room = new Room("g1", new HealEvent, new Goblin, false);
+  export const g1: Room = new Room("g1", false, false, false);
   export const g2: Room = new Room("g2", new HealEvent, new Goblin, false);
   export const g3: Room = new Room("g3", new HealEvent, new Goblin, false);
   export const g4: Room = new Room("g4", new HealEvent, new Goblin, false);

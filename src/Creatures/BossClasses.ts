@@ -1,68 +1,63 @@
-/// <reference path="../Items/Weapon.ts" />
+/// <reference path="./Creature.ts" />
 /// <reference path="../Items/Armor.ts" />
+/// <reference path="../Items/Weapon.ts" />
 
 namespace Textadventure {
   export class Gilbad extends Creature {
-    hp: number;
-    name: string;
-    type: string;
-    weapon: Weapon;
-    armor: Armor;
+    public hp: number;
+    public type: string;
+    public weapon: Weapon;
+    public armor: Armor;
 
     public constructor() {
       super();
       this.hp = 65;
-      this.name = "Gilbad der Goblin";
-      this.type = "Boss";
+      this.type = "Gilbad der Goblin";
       this.weapon = new Sword;
       this.armor = new Clothing;
     }
   }
 
   export class Valentine extends Creature {
-    hp: number;
-    name: string;
-    type: string;
-    weapon: Weapon;
-    armor: Armor;
+    public hp: number;
+    public type: string;
+    public weapon: Weapon;
+    public armor: Armor;
 
     public constructor() {
       super();
       this.hp = 135;
-      this.name = "Valentine der Vampir";
-      this.type = "Boss";
+      this.type = "Valentine der Vampir";
       this.weapon = new LongSword;
       this.armor = new Clothing;
     }
   }
 
   export class Skull extends Creature {
-    hp: number;
-    name: string;
-    type: string;
-    weapon: Weapon;
+    public hp: number;
+    public type: string;
+    public weapon: Weapon;
+    public armor: Armor;
 
     public constructor() {
       super();
       this.hp = 205;
-      this.name = "Skull das Skelett";
-      this.type = "Boss";
+      this.type = "Skull das Skelett";
       this.weapon = new Mace;
+      this.armor = new Clothing;
     }
   }
 
   export class Gabriel extends Creature {
-    hp: number;
-    name: string;
-    type: string;
-    weapon: Weapon;
-    armor: Armor;
+    public hp: number;
+    public type: string;
+    public weapon: Weapon;
+    public armor: Armor;
 
     public constructor() {
       super();
       this.hp = 205;
-      this.name = "Gabriel";
-      this.type = "EndBoss";
+      this.type = "Gabriel";
       this.weapon = new HolySword;
       this.armor = new HolyArmor;
     }

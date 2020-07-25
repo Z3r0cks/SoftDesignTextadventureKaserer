@@ -8,8 +8,8 @@ namespace Textadventure {
     }
 
     static removeItem(_ItemToRemove: Item): void {
-      const item: number = inventar.currentInventar.indexOf(_ItemToRemove);
-      inventar.currentInventar.splice(item, 1);
+      const item: number = inventory.currentInventar.indexOf(_ItemToRemove);
+      inventory.currentInventar.splice(item, 1);
     }
 
     public addItem(_newItem: Item): string {
@@ -22,7 +22,7 @@ namespace Textadventure {
         return "armor";
       }
       else {
-        inventar.currentInventar.push(_newItem);
+        inventory.currentInventar.push(_newItem);
         return "noWeapon";
       }
     }

@@ -14,8 +14,8 @@ namespace Textadventure {
 
     public constructor() {
       super();
-      this.name = "stock";
-      this.strength = 2;
+      this.name = "Stock";
+      this.strength = 5;
       this.type = "weapon";
     }
   }
@@ -28,7 +28,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Rostiges Schwert";
-      this.strength = 3;
+      this.strength = 8;
       this.type = "weapon";
     }
   }
@@ -41,7 +41,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Edles Schwert";
-      this.strength = 4;
+      this.strength = 13;
       this.type = "weapon";
     }
   }
@@ -54,7 +54,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Schwert";
-      this.strength = 3;
+      this.strength = 10;
       this.type = "weapon";
     }
   }
@@ -67,7 +67,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Streitkolben";
-      this.strength = 4;
+      this.strength = 10;
       this.type = "weapon";
     }
   }
@@ -80,7 +80,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Langschwert";
-      this.strength = 6;
+      this.strength = 16;
       this.type = "weapon";
     }
   }
@@ -93,7 +93,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Bastardschwert";
-      this.strength = 8;
+      this.strength = 20;
       this.type = "weapon";
     }
   }
