@@ -7,7 +7,6 @@ namespace Textadventure {
       return currentRoom.roomItem;
     }
     static checkRoomItem(): string {
-      console.log((currentRoom.roomItem as Item).type);
       return (currentRoom.roomItem as Item).type;
     }
   }

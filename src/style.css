@@ -80,3 +80,24 @@ span {
 .enemy {
   color: rgb(255, 0, 0);
 }
+
+#loadBtn {
+  background-color: #4169e1;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#loadBtn:hover {
+  background-color: #1348e6;
+}

@@ -91,7 +91,7 @@ namespace Textadventure {
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
 
-        case ("umschauen"):
+        case ("us"):
           const itemString: string = (roomItem != false) ? "Auf dem Boden liegt: <span>" + (currentRoom.roomItem as Item).name + "</span>." : "";
           const eventString: string = (roomEvent != false) ? (currentRoom.roomEvent as Event).story : "";
           const enemyString: string = (roomEnemy != false) ? "einen <span class=\"enemy\">" + (currentRoom.roomEnemy as Creature).type + " </span> als" : "kein";
@@ -104,7 +104,7 @@ namespace Textadventure {
             wayString = wayString + "Rechts <br> ";
           if (Room.findWay("forward"))
             wayString = wayString + "Geradeaus <br> ";
-          if (!Room.findWay("forward") && !Room.findWay("left") && Room.findWay("right"))
+          if (!Room.findWay("forward") && !Room.findWay("left") && !Room.findWay("right"))
             wayString = wayString + "Keinen";
 
           firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString + wayString;
@@ -113,7 +113,7 @@ namespace Textadventure {
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
 
-        case ("inventar"):
+        case ("iv"):
           let inventarString: String = "";
           const currentWeapon: string = player.weapon.name;
           const currentArmor: string = player.armor.name;
@@ -127,7 +127,7 @@ namespace Textadventure {
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
-        case ("einstecken"):
+        case ("ein"):
           if (currentRoom.roomItem != false) {
 
             switch (Item.checkRoomItem()) {
@@ -180,13 +180,13 @@ namespace Textadventure {
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
 
-        case ("gehe links"):
+        case ("gehe l"):
           Room.changeRoom("left");
           break;
-        case ("gehe rechts"):
+        case ("gehe r"):
           Room.changeRoom("right");
           break;
-        case ("gehe geradeaus"):
+        case ("gehe g"):
           Room.changeRoom("forward");
           break;
 
@@ -214,7 +214,7 @@ namespace Textadventure {
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
 
-        case ("angreifen"):
+        case ("a"):
           if (currentRoom.roomEnemy != false) {
             const enemyDiv: HTMLDivElement = document.createElement("div");
             Creature.attackEnemy();
@@ -312,10 +312,11 @@ namespace Textadventure {
           const uploadInput: HTMLInputElement = document.createElement("input");
           const backDiv: HTMLDivElement = document.createElement("div");
           const submitBtn: HTMLButtonElement = document.createElement("button");
+          uploadInput.type = "file";
+          uploadInput.id = "uploadBtn";
+          uploadInput.placeholder = "test";
           submitBtn.id = "loadBtn";
           submitBtn.innerHTML = "Gamefile Hochladen";
-          uploadInput.type = "file";
-          uploadInput.id = "uploadInput";
           firstDiv.innerHTML = SearchContent.search("loadMessage");
           backDiv.innerHTML = SearchContent.search("back");
           ConsoleOutput.deleteConsole(_inputLowerElement);
@@ -327,6 +328,13 @@ namespace Textadventure {
           gameStage = "start";
           ConsoleOutput.deleteConsole(_inputLowerElement);
           ConsoleOutput.filterConsoleType("start");
+          break;
+
+        case "gameloaded":
+          firstDiv.innerHTML = SearchContent.search("gameLoaded");
+          allElements.push(seperatorDiv, firstDiv, inputField);
+          ConsoleOutput.deleteConsole(_inputLowerElement);
+          gameStage = "inGame";
       }
       allElements.forEach(element => {
         document.body.appendChild(element);
@@ -334,18 +342,16 @@ namespace Textadventure {
       document.getElementById("consoleInput input").focus();
     }
 
-
     static deleteConsole(_input: string): void {
       const inputFieldCheck: HTMLElement = document.getElementById("consoleInput input");
       if (inputFieldCheck != null && checkInput(_input)) {
         document.body.removeChild(inputFieldCheck);
       }
-      if (document.getElementById("uploadInput") != undefined && gameStage == "start") {
-        const removeInput: HTMLElement = document.getElementById("uploadInput");
-        const submitBtn: HTMLElement = document.getElementById("loadBtn");
-
+      if (document.getElementById("uploadBtn") != undefined && (gameStage == "start" || gameStage == "loadGame")) {
+        const removeInput: HTMLElement = document.getElementById("uploadBtn");
+        const removeSubmitBtn: HTMLElement = document.getElementById("loadBtn");
         document.body.removeChild(removeInput);
-        document.body.removeChild(submitBtn);
+        document.body.removeChild(removeSubmitBtn);
       }
     }
   }

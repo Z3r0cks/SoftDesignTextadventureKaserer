@@ -106,7 +106,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Heiliges Schwert";
-      this.strength = 9999;
+      this.strength = 51;
       this.type = "weapon";
     }
   }

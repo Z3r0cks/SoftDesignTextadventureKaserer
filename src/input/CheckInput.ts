@@ -11,12 +11,12 @@ namespace Textadventure {
         break;
 
       case "loadGame":
-        if (lowerInput == "b" || lowerInput == "createconsole")
+        if (lowerInput == "b" || lowerInput == "createconsole" || lowerInput == "gameloaded")
           isCorrect = true;
         break;
 
       case "inGame":
-        allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "brandbombe", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen", "enemyinroom", "gehe zurück", "gesundheit", "speichern", "b");
+        allowInput.push("hilfe", "us", "iv", "ein", "heiltrank", "brandbombe", "gehe r", "gehe l", "gehe g", "falseway", "trueway", "a", "enemyinroom", "gehe zurück", "gesundheit", "speichern", "b");
         for (let i: number = 0; i < allowInput.length; i++) {
           if (lowerInput == allowInput[i]) {
             isCorrect = true;

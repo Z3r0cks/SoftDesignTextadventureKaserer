@@ -11,9 +11,9 @@ namespace Textadventure {
   export let gameStage: string = "start";
   export let storyboard: GetStory[];
   export let player: Player = new Player(100, new Stick, new Clothing);
-  export let inventory: Inventar = new Inventar([new Incendiary]);
+  export let inventory: Inventar = new Inventar([new HealPortion]);
 
-  (async function Main(): Promise<void> {
+  (async function main(): Promise<void> {
     storyboard = await (await fetch("./contentElement.json")).json();
     ConsoleOutput.filterConsoleType("start");
 
@@ -21,7 +21,6 @@ namespace Textadventure {
       const inputString: string = await getInput();
       ConsoleOutput.filterConsoleType(inputString);
       player.ifGameOver();
-
       window.scrollTo(0, document.body.scrollHeight);
     }
   })();

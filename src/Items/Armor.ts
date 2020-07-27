@@ -68,7 +68,7 @@ namespace Textadventure {
     public constructor() {
       super();
       this.name = "Heilige Rüstung";
-      this.defense = 99999;
+      this.defense = 51;
       this.type = "armor";
     }
   }

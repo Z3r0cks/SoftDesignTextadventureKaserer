@@ -174,7 +174,6 @@ var Textadventure;
             return Textadventure.currentRoom.roomItem;
         }
         static checkRoomItem() {
-            console.log(Textadventure.currentRoom.roomItem.type);
             return Textadventure.currentRoom.roomItem.type;
         }
     }
@@ -227,7 +226,7 @@ var Textadventure;
         constructor() {
             super();
             this.name = "Heilige Rüstung";
-            this.defense = 99999;
+            this.defense = 51;
             this.type = "armor";
         }
     }
@@ -307,7 +306,7 @@ var Textadventure;
         constructor() {
             super();
             this.name = "Heiliges Schwert";
-            this.strength = 9999;
+            this.strength = 51;
             this.type = "weapon";
         }
     }
@@ -393,7 +392,7 @@ var Textadventure;
     class Gabriel extends Textadventure.Creature {
         constructor() {
             super();
-            this.hp = 205;
+            this.hp = 3401;
             this.type = "Gabriel";
             this.weapon = new Textadventure.HolySword;
             this.armor = new Textadventure.HolyArmor;
@@ -466,87 +465,87 @@ var Textadventure;
 /// <reference path="../Items/Weapon.ts" />
 /// <reference path="../Items/UsableItems.ts" />
 (function (Textadventure) {
-    // export let allRooms: Room[] = [];
+    Textadventure.allRooms = [];
     // create rooms
     // constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
     // A-Rooms
-    Textadventure.a1 = new Textadventure.Room("a1", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.PlateArmor);
+    Textadventure.a1 = new Textadventure.Room("a1", false, new Textadventure.Goblin, new Textadventure.HealPortion);
     Textadventure.a2 = new Textadventure.Room("a2", new Textadventure.DamageEvent, false, new Textadventure.Incendiary);
-    Textadventure.a3 = new Textadventure.Room("a3", false, false, new Textadventure.HolyArmor);
-    Textadventure.a4 = new Textadventure.Room("a4", false, false, false); //TODO: OneWay
-    Textadventure.a5 = new Textadventure.Room("a5", false, false, false);
-    Textadventure.a6 = new Textadventure.Room("a6", false, false, false); // TODO: Finish
+    Textadventure.a3 = new Textadventure.Room("a3", new Textadventure.HealEvent, new Textadventure.Skeleton, new Textadventure.Incendiary);
+    Textadventure.a4 = new Textadventure.Room("a4", new Textadventure.HealEvent, new Textadventure.Gilbad, new Textadventure.Incendiary);
+    Textadventure.a5 = new Textadventure.Room("a5", false, new Textadventure.Vampir, false);
+    Textadventure.a6 = new Textadventure.Room("a6", new Textadventure.HealEvent, new Textadventure.Gabriel, new Textadventure.HealPortion); // TODO: Finish
     //B-Rooms
-    Textadventure.b1 = new Textadventure.Room("b1", false, false, false); //TODO: OneWay
-    Textadventure.b2 = new Textadventure.Room("b2", false, false, new Textadventure.HolyArmor);
-    Textadventure.b3 = new Textadventure.Room("b3", false, false, false);
-    Textadventure.b4 = new Textadventure.Room("b4", false, false, false);
+    Textadventure.b1 = new Textadventure.Room("b1", false, false, false);
+    Textadventure.b2 = new Textadventure.Room("b2", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.Sword);
+    Textadventure.b3 = new Textadventure.Room("b3", false, new Textadventure.Goblin, false);
+    Textadventure.b4 = new Textadventure.Room("b4", false, new Textadventure.Vampir, new Textadventure.Incendiary);
     Textadventure.b5 = new Textadventure.Room("b5", false, false, false);
-    Textadventure.b6 = new Textadventure.Room("b6", false, false, false);
+    Textadventure.b6 = new Textadventure.Room("b6", new Textadventure.HealEvent, false, false);
     //C-Rooms
-    Textadventure.c1 = new Textadventure.Room("c1", false, false, false);
-    Textadventure.c2 = new Textadventure.Room("c2", false, false, false);
-    Textadventure.c3 = new Textadventure.Room("c3", false, false, false); //TODO: OneWay
-    Textadventure.c4 = new Textadventure.Room("c4", false, false, false);
-    Textadventure.c5 = new Textadventure.Room("c5", false, false, false);
-    Textadventure.c6 = new Textadventure.Room("c6", false, false, false); //TODO: OneWay
+    Textadventure.c1 = new Textadventure.Room("c1", new Textadventure.HealEvent, false, false);
+    Textadventure.c2 = new Textadventure.Room("c2", new Textadventure.DamageEvent, false, new Textadventure.Woodarmor);
+    Textadventure.c3 = new Textadventure.Room("c3", false, new Textadventure.Skeleton, false);
+    Textadventure.c4 = new Textadventure.Room("c4", false, new Textadventure.Vampir, new Textadventure.Incendiary);
+    Textadventure.c5 = new Textadventure.Room("c5", false, new Textadventure.Vampir, new Textadventure.HealPortion);
+    Textadventure.c6 = new Textadventure.Room("c6", false, new Textadventure.Skull, new Textadventure.HealPortion);
     //D-Rooms
-    Textadventure.d1 = new Textadventure.Room("d1", false, false, false);
+    Textadventure.d1 = new Textadventure.Room("d1", false, new Textadventure.Goblin, false);
     Textadventure.d2 = new Textadventure.Room("d2", false, false, false);
-    Textadventure.d3 = new Textadventure.Room("d3", false, false, false);
-    Textadventure.d4 = new Textadventure.Room("d4", false, false, false);
-    Textadventure.d5 = new Textadventure.Room("d5", false, false, false);
+    Textadventure.d3 = new Textadventure.Room("d3", false, new Textadventure.Skeleton, false);
+    Textadventure.d4 = new Textadventure.Room("d4", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
+    Textadventure.d5 = new Textadventure.Room("d5", new Textadventure.DamageEvent, false, false);
     Textadventure.d6 = new Textadventure.Room("d6", false, false, false);
     //E-Rooms
-    Textadventure.e1 = new Textadventure.Room("e1", false, false, false);
-    Textadventure.e2 = new Textadventure.Room("e2", false, false, false);
+    Textadventure.e1 = new Textadventure.Room("e1", new Textadventure.HealEvent, false, new Textadventure.Mace);
+    Textadventure.e2 = new Textadventure.Room("e2", false, new Textadventure.Skeleton, false);
     Textadventure.e3 = new Textadventure.Room("e3", false, false, false);
-    Textadventure.e4 = new Textadventure.Room("e4", false, false, false);
+    Textadventure.e4 = new Textadventure.Room("e4", new Textadventure.DamageEvent, new Textadventure.Valentine, false);
     Textadventure.e5 = new Textadventure.Room("e5", false, false, false);
-    Textadventure.e6 = new Textadventure.Room("e6", false, false, false);
+    Textadventure.e6 = new Textadventure.Room("e6", new Textadventure.HealEvent, false, false);
     //F-Rooms
-    Textadventure.f1 = new Textadventure.Room("f1", false, false, false);
-    Textadventure.f2 = new Textadventure.Room("f2", false, false, false);
-    Textadventure.f3 = new Textadventure.Room("f3", false, false, false);
-    Textadventure.f4 = new Textadventure.Room("f4", false, false, false);
-    Textadventure.f5 = new Textadventure.Room("f5", false, false, false); //TODO: OneWay
+    Textadventure.f1 = new Textadventure.Room("f1", false, new Textadventure.Gilbad, new Textadventure.Incendiary);
+    Textadventure.f2 = new Textadventure.Room("f2", false, new Textadventure.Skeleton, new Textadventure.HealPortion);
+    Textadventure.f3 = new Textadventure.Room("f3", false, new Textadventure.Skeleton, false);
+    Textadventure.f4 = new Textadventure.Room("f4", false, new Textadventure.Vampir, false);
+    Textadventure.f5 = new Textadventure.Room("f5", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
     Textadventure.f6 = new Textadventure.Room("f6", false, false, false);
     //G-Rooms
     Textadventure.g1 = new Textadventure.Room("g1", false, false, false);
-    Textadventure.g2 = new Textadventure.Room("g2", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.g3 = new Textadventure.Room("g3", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.g4 = new Textadventure.Room("g4", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.g6 = new Textadventure.Room("g6", new Textadventure.HealEvent, new Textadventure.Goblin, false);
+    Textadventure.g2 = new Textadventure.Room("g2", new Textadventure.DamageEvent, false, false);
+    Textadventure.g3 = new Textadventure.Room("g3", new Textadventure.HealEvent, new Textadventure.Skeleton, new Textadventure.LeatherClothing);
+    Textadventure.g4 = new Textadventure.Room("g4", false, false, false);
+    Textadventure.g6 = new Textadventure.Room("g6", false, false, false);
     //H-Rooms
-    Textadventure.h1 = new Textadventure.Room("h1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.h2 = new Textadventure.Room("h2", new Textadventure.HealEvent, new Textadventure.Goblin, false); //TODO: OneWay
-    Textadventure.h3 = new Textadventure.Room("h3", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.h4 = new Textadventure.Room("h4", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.h5 = new Textadventure.Room("h5", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.h6 = new Textadventure.Room("h6", new Textadventure.HealEvent, new Textadventure.Goblin, false);
+    Textadventure.h1 = new Textadventure.Room("h1", new Textadventure.DamageEvent, false, false);
+    Textadventure.h2 = new Textadventure.Room("h2", false, false, new Textadventure.Incendiary);
+    Textadventure.h3 = new Textadventure.Room("h3", false, false, false);
+    Textadventure.h4 = new Textadventure.Room("h4", new Textadventure.DamageEvent, new Textadventure.Skull, false);
+    Textadventure.h5 = new Textadventure.Room("h5", false, false, false);
+    Textadventure.h6 = new Textadventure.Room("h6", new Textadventure.HealEvent, false, new Textadventure.HealPortion);
     // set posibleDirections
     // addPosRooms(_posLeft: Room | boolean, _posRight: Room | boolean, _posFoward: Room | boolean)
     // A-Rooms
     Textadventure.a1.addPosRooms(false, false, Textadventure.a2);
     Textadventure.a2.addPosRooms(false, Textadventure.b2, Textadventure.a3);
     Textadventure.a3.addPosRooms(false, Textadventure.b3, false);
-    Textadventure.a4.addPosRooms(false, false, false); //TODO: OneWay
+    Textadventure.a4.addPosRooms(Textadventure.c5, false, false);
     Textadventure.a4.addPosRooms(false, Textadventure.a6, false);
-    Textadventure.a6.addPosRooms(false, false, false); // TODO: Finish
+    Textadventure.a6.addPosRooms(false, false, false); // Finish
     // B-Rooms
-    Textadventure.b1.addPosRooms(false, false, false); //TODO: OneWay
-    Textadventure.b2.addPosRooms(Textadventure.b1, false, Textadventure.c2);
+    Textadventure.b1.addPosRooms(false, Textadventure.c2, false);
+    Textadventure.b2.addPosRooms(false, Textadventure.b1, Textadventure.c2);
     Textadventure.b3.addPosRooms(Textadventure.b2, false, false);
     Textadventure.b4.addPosRooms(false, false, Textadventure.a4);
     Textadventure.b5.addPosRooms(false, Textadventure.b6, Textadventure.a5);
     Textadventure.b6.addPosRooms(Textadventure.c6, false, false);
     //C-Rooms
     Textadventure.c1.addPosRooms(Textadventure.d1, false, false);
-    Textadventure.c2.addPosRooms(Textadventure.c3, Textadventure.c1, Textadventure.c2);
-    Textadventure.c3.addPosRooms(false, false, false); //TODO: OneWay
+    Textadventure.c2.addPosRooms(Textadventure.c3, Textadventure.c1, Textadventure.d2);
+    Textadventure.c3.addPosRooms(false, false, Textadventure.d1);
     Textadventure.c4.addPosRooms(false, Textadventure.c5, Textadventure.a4);
     Textadventure.c5.addPosRooms(Textadventure.b5, false, false);
-    Textadventure.c6.addPosRooms(false, false, false); //TODO: OneWay
+    Textadventure.c6.addPosRooms(Textadventure.a5, false, false);
     //D-Rooms
     Textadventure.d1.addPosRooms(false, false, Textadventure.e1);
     Textadventure.d2.addPosRooms(Textadventure.d3, false, false);
@@ -566,22 +565,22 @@ var Textadventure;
     Textadventure.f2.addPosRooms(false, false, Textadventure.f3);
     Textadventure.f3.addPosRooms(Textadventure.g4, false, Textadventure.f4);
     Textadventure.f4.addPosRooms(false, false, Textadventure.f5);
-    Textadventure.f5.addPosRooms(false, false, false); //TODO: OneWay
+    Textadventure.f5.addPosRooms(false, Textadventure.g3, false);
     Textadventure.f6.addPosRooms(false, false, Textadventure.e6);
-    //F-Rooms
+    //G-Rooms
     Textadventure.g1.addPosRooms(Textadventure.h1, false, false);
     Textadventure.g2.addPosRooms(false, false, Textadventure.g1);
     Textadventure.g3.addPosRooms(Textadventure.g4, Textadventure.g2, Textadventure.h3);
     Textadventure.g4.addPosRooms(false, Textadventure.h4, false);
     Textadventure.g6.addPosRooms(false, false, Textadventure.f6);
-    //F-Rooms
+    //H-Rooms
     Textadventure.h1.addPosRooms(Textadventure.h2, false, false);
-    Textadventure.h2.addPosRooms(false, false, false); //TODO: OneWay
+    Textadventure.h2.addPosRooms(Textadventure.h3, false, false);
     Textadventure.h3.addPosRooms(Textadventure.h4, false, false);
     Textadventure.h4.addPosRooms(false, false, Textadventure.h5);
     Textadventure.h5.addPosRooms(false, false, Textadventure.h6);
     Textadventure.h6.addPosRooms(Textadventure.g6, false, false);
-    // allRooms.push(a1, a2, a3, a4, a5, a6, b1, b2, b3, b4, b5, b6, c1, c2, c3, c4, c5, c6, d1, d2, d3, d4, d5, d6, e1, e2, e3, e4, e5, e6, f1, f2, f3, f4, f5, f6, g1, g2, g3, g4, g6, h1, h2, h3, h4, h5, h6);
+    Textadventure.allRooms.push(Textadventure.a1, Textadventure.a2, Textadventure.a3, Textadventure.a4, Textadventure.a5, Textadventure.a6, Textadventure.b1, Textadventure.b2, Textadventure.b3, Textadventure.b4, Textadventure.b5, Textadventure.b6, Textadventure.c1, Textadventure.c2, Textadventure.c3, Textadventure.c4, Textadventure.c5, Textadventure.c6, Textadventure.d1, Textadventure.d2, Textadventure.d3, Textadventure.d4, Textadventure.d5, Textadventure.d6, Textadventure.e1, Textadventure.e2, Textadventure.e3, Textadventure.e4, Textadventure.e5, Textadventure.e6, Textadventure.f1, Textadventure.f2, Textadventure.f3, Textadventure.f4, Textadventure.f5, Textadventure.f6, Textadventure.g1, Textadventure.g2, Textadventure.g3, Textadventure.g4, Textadventure.g6, Textadventure.h1, Textadventure.h2, Textadventure.h3, Textadventure.h4, Textadventure.h5, Textadventure.h6);
 })(Textadventure || (Textadventure = {}));
 /// <reference path="./Creature.ts" />
 var Textadventure;
@@ -695,7 +694,7 @@ var Textadventure;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
-                case ("umschauen"):
+                case ("us"):
                     const itemString = (roomItem != false) ? "Auf dem Boden liegt: <span>" + Textadventure.currentRoom.roomItem.name + "</span>." : "";
                     const eventString = (roomEvent != false) ? Textadventure.currentRoom.roomEvent.story : "";
                     const enemyString = (roomEnemy != false) ? "einen <span class=\"enemy\">" + Textadventure.currentRoom.roomEnemy.type + " </span> als" : "kein";
@@ -707,14 +706,14 @@ var Textadventure;
                         wayString = wayString + "Rechts <br> ";
                     if (Textadventure.Room.findWay("forward"))
                         wayString = wayString + "Geradeaus <br> ";
-                    if (!Textadventure.Room.findWay("forward") && !Textadventure.Room.findWay("left") && Textadventure.Room.findWay("right"))
+                    if (!Textadventure.Room.findWay("forward") && !Textadventure.Room.findWay("left") && !Textadventure.Room.findWay("right"))
                         wayString = wayString + "Keinen";
                     firstDiv.innerHTML = "Du schaust dich im Raum um. Du siehst " + enemyString + " Gegner. <br>" + eventString + "<br>" + itemString + wayString;
                     Textadventure.currentRoom.roomEvent = false;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
-                case ("inventar"):
+                case ("iv"):
                     let inventarString = "";
                     const currentWeapon = Textadventure.player.weapon.name;
                     const currentArmor = Textadventure.player.armor.name;
@@ -728,7 +727,7 @@ var Textadventure;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
-                case ("einstecken"):
+                case ("ein"):
                     if (Textadventure.currentRoom.roomItem != false) {
                         switch (Textadventure.Item.checkRoomItem()) {
                             case "weapon":
@@ -779,13 +778,13 @@ var Textadventure;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
-                case ("gehe links"):
+                case ("gehe l"):
                     Textadventure.Room.changeRoom("left");
                     break;
-                case ("gehe rechts"):
+                case ("gehe r"):
                     Textadventure.Room.changeRoom("right");
                     break;
-                case ("gehe geradeaus"):
+                case ("gehe g"):
                     Textadventure.Room.changeRoom("forward");
                     break;
                 case ("gehe zurück"):
@@ -808,7 +807,7 @@ var Textadventure;
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     break;
-                case ("angreifen"):
+                case ("a"):
                     if (Textadventure.currentRoom.roomEnemy != false) {
                         const enemyDiv = document.createElement("div");
                         Textadventure.Creature.attackEnemy();
@@ -895,10 +894,11 @@ var Textadventure;
                     const uploadInput = document.createElement("input");
                     const backDiv = document.createElement("div");
                     const submitBtn = document.createElement("button");
+                    uploadInput.type = "file";
+                    uploadInput.id = "uploadBtn";
+                    uploadInput.placeholder = "test";
                     submitBtn.id = "loadBtn";
                     submitBtn.innerHTML = "Gamefile Hochladen";
-                    uploadInput.type = "file";
-                    uploadInput.id = "uploadInput";
                     firstDiv.innerHTML = Textadventure.SearchContent.search("loadMessage");
                     backDiv.innerHTML = Textadventure.SearchContent.search("back");
                     ConsoleOutput.deleteConsole(_inputLowerElement);
@@ -909,6 +909,12 @@ var Textadventure;
                     Textadventure.gameStage = "start";
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     ConsoleOutput.filterConsoleType("start");
+                    break;
+                case "gameloaded":
+                    firstDiv.innerHTML = Textadventure.SearchContent.search("gameLoaded");
+                    allElements.push(seperatorDiv, firstDiv, inputField);
+                    ConsoleOutput.deleteConsole(_inputLowerElement);
+                    Textadventure.gameStage = "inGame";
             }
             allElements.forEach(element => {
                 document.body.appendChild(element);
@@ -920,11 +926,11 @@ var Textadventure;
             if (inputFieldCheck != null && Textadventure.checkInput(_input)) {
                 document.body.removeChild(inputFieldCheck);
             }
-            if (document.getElementById("uploadInput") != undefined && Textadventure.gameStage == "start") {
-                const removeInput = document.getElementById("uploadInput");
-                const submitBtn = document.getElementById("loadBtn");
+            if (document.getElementById("uploadBtn") != undefined && (Textadventure.gameStage == "start" || Textadventure.gameStage == "loadGame")) {
+                const removeInput = document.getElementById("uploadBtn");
+                const removeSubmitBtn = document.getElementById("loadBtn");
                 document.body.removeChild(removeInput);
-                document.body.removeChild(submitBtn);
+                document.body.removeChild(removeSubmitBtn);
             }
         }
     }
@@ -948,8 +954,8 @@ var Textadventure;
 (function (Textadventure) {
     Textadventure.gameStage = "start";
     Textadventure.player = new Textadventure.Player(100, new Textadventure.Stick, new Textadventure.Clothing);
-    Textadventure.inventory = new Textadventure.Inventar([new Textadventure.Incendiary]);
-    (async function Main() {
+    Textadventure.inventory = new Textadventure.Inventar([new Textadventure.HealPortion]);
+    (async function main() {
         Textadventure.storyboard = await (await fetch("./contentElement.json")).json();
         Textadventure.ConsoleOutput.filterConsoleType("start");
         while (Textadventure.gameStage != "end") {
@@ -985,11 +991,13 @@ var Textadventure;
 (function (Textadventure) {
     class GenerateSaveFile {
         constructor() {
-            this.currentRoom = Textadventure.currentRoom;
+            this.currentRoomName = Textadventure.currentRoom.roomName;
             this.currentWeapon = Textadventure.player.weapon;
             this.currentArmor = Textadventure.player.armor;
             this.currentinventory = Textadventure.inventory;
             this.currentHP = Textadventure.player.hp;
+            this.currentEvent = Textadventure.currentRoom.roomEvent;
+            this.currentItem = Textadventure.currentRoom.roomItem;
         }
     }
     Textadventure.GenerateSaveFile = GenerateSaveFile;
@@ -1008,18 +1016,30 @@ var Textadventure;
             linkElement.setAttribute("download", exportFileName);
             linkElement.click();
         }
+        static roomNameToRoom(_roomName) {
+            for (let i = 0; i < Textadventure.allRooms.length; i++) {
+                if (_roomName == Textadventure.allRooms[i].roomName) {
+                    Textadventure.currentRoom = Textadventure.allRooms[i];
+                }
+            }
+        }
         static async loadGame() {
             Textadventure.ConsoleOutput.filterConsoleType("createConsole");
             document.getElementById("loadBtn").addEventListener("click", async () => {
-                const uploadElement = document.getElementById("uploadInput");
-                const myFile = uploadElement.files[0];
-                const myFileArray = JSON.parse(await myFile.text());
-                Textadventure.player.hp = myFileArray.currentHP;
-                Textadventure.player.armor = myFileArray.currentArmor;
-                Textadventure.inventory = myFileArray.currentinventory;
-                console.log("HP: " + Textadventure.player.hp);
-                console.log("Weapon: " + Textadventure.player.weapon.name);
-                console.log("Armor: " + Textadventure.player.armor.name);
+                const uploadElement = document.getElementById("uploadBtn");
+                if (uploadElement.files[0]) {
+                    const myFile = uploadElement.files[0];
+                    const myFileArray = JSON.parse(await myFile.text());
+                    SaveLoad.roomNameToRoom(myFileArray.currentRoomName);
+                    Textadventure.player.hp = myFileArray.currentHP;
+                    Textadventure.player.weapon = myFileArray.currentWeapon;
+                    Textadventure.player.armor = myFileArray.currentArmor;
+                    Textadventure.inventory = myFileArray.currentinventory;
+                    Textadventure.currentRoom.roomItem = myFileArray.currentItem;
+                    Textadventure.currentRoom.roomEvent = myFileArray.currentEvent;
+                    Textadventure.gameStage = "loadGame";
+                    Textadventure.ConsoleOutput.filterConsoleType("gameLoaded");
+                }
             });
         }
     }
@@ -1037,11 +1057,11 @@ var Textadventure;
                     isCorrect = true;
                 break;
             case "loadGame":
-                if (lowerInput == "b" || lowerInput == "createconsole")
+                if (lowerInput == "b" || lowerInput == "createconsole" || lowerInput == "gameloaded")
                     isCorrect = true;
                 break;
             case "inGame":
-                allowInput.push("hilfe", "umschauen", "inventar", "einstecken", "heiltrank", "brandbombe", "gehe rechts", "gehe links", "gehe geradeaus", "falseway", "trueway", "angreifen", "enemyinroom", "gehe zurück", "gesundheit", "speichern", "b");
+                allowInput.push("hilfe", "us", "iv", "ein", "heiltrank", "brandbombe", "gehe r", "gehe l", "gehe g", "falseway", "trueway", "a", "enemyinroom", "gehe zurück", "gesundheit", "speichern", "b");
                 for (let i = 0; i < allowInput.length; i++) {
                     if (lowerInput == allowInput[i]) {
                         isCorrect = true;

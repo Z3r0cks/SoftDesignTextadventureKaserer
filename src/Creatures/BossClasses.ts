@@ -56,7 +56,7 @@ namespace Textadventure {
 
     public constructor() {
       super();
-      this.hp = 205;
+      this.hp = 3401;
       this.type = "Gabriel";
       this.weapon = new HolySword;
       this.armor = new HolyArmor;
