@@ -1,8 +1,7 @@
 namespace Textadventure {
   export abstract class Event {
-    story: string;
-    effect: number;
-    type: string;
+    public story: string;
+    public type: string;
 
     static getRoomEvent(): Event | boolean {
       return currentRoom.roomEvent;

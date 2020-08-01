@@ -33,6 +33,18 @@ namespace Textadventure {
     }
   }
 
+  export class Sword extends Weapon {
+    public name: string;
+    public strength: number;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Schwert";
+      this.strength = 10;
+      this.type = "weapon";
+    }
+  }
   export class NobleSword extends Weapon {
     public name: string;
     public strength: number;
@@ -46,18 +58,6 @@ namespace Textadventure {
     }
   }
 
-  export class Sword extends Weapon {
-    public name: string;
-    public strength: number;
-    public type: string;
-
-    public constructor() {
-      super();
-      this.name = "Schwert";
-      this.strength = 10;
-      this.type = "weapon";
-    }
-  }
 
   export class Mace extends Weapon {
     public name: string;

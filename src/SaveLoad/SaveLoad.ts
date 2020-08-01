@@ -1,7 +1,6 @@
 namespace Textadventure {
   export class SaveLoad {
 
-
     static saveGame(): void {
       const myJsonString: string = JSON.stringify(new GenerateSaveFile);
       const fileName: string = "GameSave";
@@ -38,7 +37,6 @@ namespace Textadventure {
           inventory = myFileArray.currentinventory;
           currentRoom.roomItem = myFileArray.currentItem;
           currentRoom.roomEvent = myFileArray.currentEvent;
-          gameStage = "loadGame";
           ConsoleOutput.filterConsoleType("gameLoaded");
         }
       }

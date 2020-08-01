@@ -68,6 +68,10 @@
     "content": "Das hast du nicht in deinem inventar"
   },
   {
+    "id": "noItemInRoom",
+    "content": "Hier gibt es nichts zum einstecken"
+  },
+  {
     "id": "enemyDead",
     "content": "Du hast den Feind besiegt, du kannst den Raum nun verlassen"
   },

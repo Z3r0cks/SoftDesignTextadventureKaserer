@@ -2,8 +2,13 @@
 
 namespace Textadventure {
   export class HealEvent extends Event {
-    story: string = "Du findest einen Heilbrunnen im Raum und heilst dich vollständig.";
-    effect: number;
-    type: string = "HealEvent";
+    story: string;
+    type: string;
+
+    public constructor() {
+      super();
+      this.story = "Du findest einen Heilbrunnen im Raum und heilst dich vollständig.";
+      this.type = "HealEvent";
+    }
   }
 }

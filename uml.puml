@@ -4,56 +4,11 @@ abstract class SearchContent {
   {static}searchContent(_string: string)
 }
 
-abstract class Inventar {
-  {static} getRoomItem()
-}
-
-interface Weapons extends Item {
-  + name: string
-  + strength: number
-}
-
-class Stick implements Weapon {
-  + name: string
-  + damage
-}
-class RostySword implements Weapon {
-  + name: string
-  + damage
-}
-class Sword implements Weapon {
-  + name: string
-  + damage
-}
-class NobleSword implements Weapon {
-  + name: string
-  + damage
-}
-class BastardSword implements Weapon {
-  + name: string
-  + damage
-}
-class Mace implements Weapon {
-  + name: string
-  + damage
-}
-class HolySword implements Weapon {
-  + name: string
-  + damage
-}
-class LongSword implements Weapon {
-  + name: string
-  + damage
-}
-
-interface Armor extends Item {
-  + name: string
-  + defense: number
-}
-
-class HealPortion extends Item {
-  + name: string
-  + defense: number
+class Inventar {
+  + currentInventar: Item[]
+  + constructor(_currentInventar: Item[])
+  {static} removeItem(_ItemToRemove: Item)
+  {static} addItem(_newItem: Item)
 }
 
 class Inventar {
@@ -64,49 +19,48 @@ class Inventar {
 }
 
 class ConsoleOutput {
-  + currentRoom: string;
-  + constructor(_currentRoom: string)
-  {static} filterConsoleOutput(_inputElement: string)
+  {static} filterConsoleType(_inputElement: string)
   {static} buildStartMenu(_inputLowerElement: string)
   {static} buildIngameMenu(_inputLowerElement: string)
-  {static} deleteConsole(_inputLowerElement: string)
+  {static} buildEndMenu(_inputLowerElement: string)
+  {static} loadGame(_inputLowerElement: string)
+  {static} deleteConsole(_input: string)
 }
 
 class Room {
- + roomEvents: number[]
- + roomEnemys: number[]
- + posDirection: string[]
- + constructor(_roomEvents: number[], _roomEnemys: number[], _posDirection: string[])
+  + roomName: string
+  + roomEvent: Event | boolean
+  + roomEnemy: Creature | boolean
+  + roomItem: Item | boolean
+  + posLeft: Room | boolean
+  + posRight: Room | boolean
+  + posForward: Room | boolean
+  + constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
+  {static} findWay(_direction: string)
+  {static} changeRoom(_direction: string)
+  + removeItemFromRoom()
+  + addItemToRoom()
+  + addPosRooms()
 }
 
-interface Effect {
-  + type: string
-  + value: number
-}
-
-interface HealEffect {
-  + type: string
-  + value: 100
-}
-
-interface DamageEffect {
-  + type: string
-  + value: 10
-}
-
-interface Event {
+abstract class Event {
   + story: string
   + effect: effect
+
+  {static} getRoomEvent()
+  {static} executeEvent()
 }
 
 class HealEvent {
   + story: string
   + effect: effect
+  + constructor()
 }
 
 interface DamageEvent {
   + story: string
   + effect: effect
+  + constructor()
 }
 
 interface GetStory {
@@ -114,103 +68,222 @@ interface GetStory {
   + content: string
 }
 
-interface Creature {
-  hp: number
-  type: string
+abstract class Creature {
+  {abstract}hp: number
+  {abstract}type: string
+  {abstract}weapon: Weapon
+  {abstract}armor: Armor
+
+  {static}getRoomEnemy()
+  {static}attackEnemy()
+  {static}removeEnemyFroomRoom()
+  {static}chIfEnemyDead()
 }
 
-class Player implements Creature {
+class Player extends Creature {
   + hp: number
   + weapon: string
   + strength: number
   + constructor(_hp:number, _weapon: string, _stength: number)
-  {static} decreaseHP(_valueToDecrease: number);
-  + increaseHP(_valueToIncrease: number);
-  + decreaseStrength(_valueToDecrease: number);
-  + increaseStrength(_valueToIncrease: number);
-  + setPlayerWeapon(_newWeapon);
+  + changeWeapon(_weapon: Weapon)
+  + changeArmor(_armor: Armor)
+  + ifGameOver()
 }
 
-abstract Enemy implements Creature {
-  {abstract} hp: number
-  {abstract} strength
-  {abstract} type: string
-  {abstract} weapon: string
-}
-
-class EnemyOne extends Enemy {
+class Goblin extends Creature {
   + hp: number
   + strength
   + type: string
   + weapon: string
+  + constructor()
 }
-class EnemyTwo extends Enemy {
+
+class Skeleton extends Creature {
   + hp: number
   + strength
   + type: string
   + weapon: string
+  + constructor()
 }
 
-class EnemyThree extends Enemy {
+ class Vampir extends Creature {
   + hp: number
   + strength
   + type: string
   + weapon: string
+  + constructor()
 }
 
-abstract NPC implements Creature {
-  {abstract} hp: number
-  {abstract} type: string
-}
-
-class NPCOne extends NPC {
+class Gilbad extends Creature {
+  + Name: String
   + hp: number
+  + strength
   + type: string
+  + weapon: string
+  constructor()
 }
-
-class NPCTwo extends NPC {
+class Skull extends Creature {
+  + Name: String
   + hp: number
+  + strength
   + type: string
+  + weapon: string
+  constructor()
 }
-
-class NPCThree extends NPC {
+class Valentine extends Creature {
+  + Name: String
   + hp: number
+  + strength
   + type: string
+  + weapon: string
+  constructor()
+}
+class Gabriel extends Creature {
+  + Name: String
+  + hp: number
+  + strength
+  + type: string
+  + weapon: string
+  constructor()
 }
 
-abstract Boss implements Creature {
-  {abstract} Name: String
-  {abstract} hp: number
-  {abstract} strength
-  {abstract} type: string
-  {abstract} weapon: string
+abstract class Item {
+  + name: string
+  + type: string
+
+  {static} getRoomItem()
+  {static} checkRoomItem()
 }
 
-interface Item {
-  type: string
-}
-
-class Weapon implements Item {
-  + type: String
+abstract class Weapon extends Item {
+  + type: string
   + strength: number
-  + constructor(_type: string, _strength: number)
+  + type: string
 }
 
-class Armor implements Item {
-  + type: String
-  + defense: number
-  + constructor(_type: string, _defense: number)
+class Stick extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class Sword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class RostySword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class NobleSword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class BastardSword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class LongSword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class Mace extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
+}
+class HolySword extends Weapon {
+  + name: string
+  + strength: number
+  + type: string
+  + constructor()
 }
 
-class healthportion implements Item {
-  + type: String
+abstract class Armor extends Item {
+  + type: string
   + defense: number
-  + constructor(_type: string, _defense: number)
+  + type: string
 }
+
+class Clothing extends Armor {
+  + name: string
+  + defense: number
+  + type: string
+  + constructor()
+}
+
+class LeatherClothing extends Armor {
+  + name: string
+  + defense: number
+  + type: string
+  + constructor()
+}
+
+class Woodarmor extends Armor {
+  + name: string
+  + defense: number
+  + type: string
+  + constructor()
+}
+
+class PlateArmor extends Armor {
+  + name: string
+  + defense: number
+  + type: string
+  + constructor()
+}
+
+class HolyArmor extends Armor {
+  + name: string
+  + defense: number
+  + type: string
+  + constructor()
+}
+
+class HealPortion extends Item {
+  + name: string
+  + type: string
+  + constructor()
+  {static} useHealPortion()
+}
+class Incendiary extends Item {
+  + name: string
+  + type: string
+  + constructor()
+  {static} useIncendiary()
+}
+
+class GenerateSaveFile {
+  + currentRoomName: string
+  + currentWeapon: Weapon
+  + currentArmor: Armor
+  + currentinventory: Inventar
+  + currentHP: number
+  + currentEvent: Event | boolean
+  + currentItem: Item | boolean
+
+  + constructor()
+}
+
+class SaveLoad {
+  {static} saveGame()
+  {static} roomNameToRoom()
+  {static} loadGame()
+}
+
   GetStory -[hidden]->  ConsoleOutput
   ConsoleOutput -[hidden]-> Creature
-  EnemyOne -[hidden]-> Room
-  Room -[hidden]-> Item
-
-
+  Room -[hidden]-> Inventar
+  Gilbad -[hidden]-> Item
 @enduml

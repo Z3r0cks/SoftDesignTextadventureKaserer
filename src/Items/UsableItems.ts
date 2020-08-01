@@ -1,10 +1,15 @@
 /// <reference path="./Item.ts" />
-/// <reference path="../Effect/HealEffect.ts" />
 
 namespace Textadventure {
   export class HealPortion extends Item {
-    public name: string = "Heiltrank";
-    public type: string = "HealPortion";
+    public name: string;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Heiltrank";
+      this.type = "HealPortion";
+    }
 
     static useHealPortion(): boolean {
       for (let i: number = 0; i < inventory.currentInventar.length; i++) {
@@ -20,8 +25,14 @@ namespace Textadventure {
   }
 
   export class Incendiary extends Item {
-    public name: string = "Brandbombe";
-    public type: string = "Incendiary";
+    public name: string;
+    public type: string;
+
+    public constructor() {
+      super();
+      this.name = "Brandbombe";
+      this.type = "Incendiary";
+    }
 
     static useIncendiary(): boolean {
       for (let i: number = 0; i < inventory.currentInventar.length; i++) {

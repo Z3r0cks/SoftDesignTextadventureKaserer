@@ -114,7 +114,7 @@ namespace Textadventure {
           break;
 
         case ("iv"):
-          let inventarString: String = "";
+          let inventarString: string = "";
           const currentWeapon: string = player.weapon.name;
           const currentArmor: string = player.armor.name;
 
@@ -148,7 +148,7 @@ namespace Textadventure {
             }
 
           } else {
-            firstDiv.innerHTML = "Hier gibt es nichts zum einstecken";
+            firstDiv.innerHTML = SearchContent.search("noItemInRoom");
           }
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
@@ -235,7 +235,6 @@ namespace Textadventure {
 
           allElements.push(inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
-
           break;
 
         case ("enemydead"):
@@ -276,8 +275,6 @@ namespace Textadventure {
     static buildEndMenu(_inputLowerElement: string): void {
       const allElements: HTMLElement[] = [];
       const firstDiv: HTMLDivElement = document.createElement("div");
-      const inputField: HTMLInputElement = document.createElement("input");
-      inputField.id = "consoleInput input";
       switch (_inputLowerElement) {
         case "gameover":
           const endDiv: HTMLDivElement = document.createElement("div");
@@ -285,16 +282,12 @@ namespace Textadventure {
           document.body.innerHTML = "";
           firstDiv.innerHTML = "GAME OVER";
 
-          allElements.push(firstDiv, endDiv, inputField);
-          break;
-
-        default:
+          allElements.push(firstDiv, endDiv);
           break;
       }
       allElements.forEach(element => {
         document.body.appendChild(element);
       });
-      document.getElementById("consoleInput input").focus();
     }
 
     /////////////////////// DeleteConsole //////////////////////////////
@@ -314,13 +307,11 @@ namespace Textadventure {
           const submitBtn: HTMLButtonElement = document.createElement("button");
           uploadInput.type = "file";
           uploadInput.id = "uploadBtn";
-          uploadInput.placeholder = "test";
           submitBtn.id = "loadBtn";
           submitBtn.innerHTML = "Gamefile Hochladen";
           firstDiv.innerHTML = SearchContent.search("loadMessage");
           backDiv.innerHTML = SearchContent.search("back");
           ConsoleOutput.deleteConsole(_inputLowerElement);
-          gameStage = "loadGame";
           allElements.push(seperatorDiv, firstDiv, backDiv, uploadInput, submitBtn, inputField);
           break;
 
@@ -335,6 +326,7 @@ namespace Textadventure {
           allElements.push(seperatorDiv, firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           gameStage = "inGame";
+          break;
       }
       allElements.forEach(element => {
         document.body.appendChild(element);

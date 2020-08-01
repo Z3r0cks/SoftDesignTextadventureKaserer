@@ -121,7 +121,7 @@ var Textadventure;
 (function (Textadventure) {
     class HealEvent extends Textadventure.Event {
         constructor() {
-            super(...arguments);
+            super();
             this.story = "Du findest einen Heilbrunnen im Raum und heilst dich vollständig.";
             this.type = "HealEvent";
         }
@@ -134,7 +134,7 @@ var Textadventure;
 (function (Textadventure) {
     class DamageEvent extends Textadventure.Event {
         constructor() {
-            super(...arguments);
+            super();
             this.story = "Du läufst in eine Falle und verlierst etwas Gesundheit.";
             this.type = "DamageEvent";
         }
@@ -257,15 +257,6 @@ var Textadventure;
         }
     }
     Textadventure.RostySword = RostySword;
-    class NobleSword extends Weapon {
-        constructor() {
-            super();
-            this.name = "Edles Schwert";
-            this.strength = 13;
-            this.type = "weapon";
-        }
-    }
-    Textadventure.NobleSword = NobleSword;
     class Sword extends Weapon {
         constructor() {
             super();
@@ -275,6 +266,15 @@ var Textadventure;
         }
     }
     Textadventure.Sword = Sword;
+    class NobleSword extends Weapon {
+        constructor() {
+            super();
+            this.name = "Edles Schwert";
+            this.strength = 13;
+            this.type = "weapon";
+        }
+    }
+    Textadventure.NobleSword = NobleSword;
     class Mace extends Weapon {
         constructor() {
             super();
@@ -400,21 +400,13 @@ var Textadventure;
     }
     Textadventure.Gabriel = Gabriel;
 })(Textadventure || (Textadventure = {}));
-var Textadventure;
-(function (Textadventure) {
-    class HealEffect {
-    }
-    Textadventure.HealEffect = HealEffect;
-})(Textadventure || (Textadventure = {}));
 /// <reference path="./Item.ts" />
-/// <reference path="../Effect/HealEffect.ts" />
 var Textadventure;
 /// <reference path="./Item.ts" />
-/// <reference path="../Effect/HealEffect.ts" />
 (function (Textadventure) {
     class HealPortion extends Textadventure.Item {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Heiltrank";
             this.type = "HealPortion";
         }
@@ -432,7 +424,7 @@ var Textadventure;
     Textadventure.HealPortion = HealPortion;
     class Incendiary extends Textadventure.Item {
         constructor() {
-            super(...arguments);
+            super();
             this.name = "Brandbombe";
             this.type = "Incendiary";
         }
@@ -746,7 +738,7 @@ var Textadventure;
                         }
                     }
                     else {
-                        firstDiv.innerHTML = "Hier gibt es nichts zum einstecken";
+                        firstDiv.innerHTML = Textadventure.SearchContent.search("noItemInRoom");
                     }
                     allElements.push(firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
@@ -863,23 +855,18 @@ var Textadventure;
         static buildEndMenu(_inputLowerElement) {
             const allElements = [];
             const firstDiv = document.createElement("div");
-            const inputField = document.createElement("input");
-            inputField.id = "consoleInput input";
             switch (_inputLowerElement) {
                 case "gameover":
                     const endDiv = document.createElement("div");
                     endDiv.innerHTML = "Deine Gesundheit liegt bei <span class=\"lifepoints\">" + Textadventure.player.hp + "</span> </br> <br> Du wurdest von <span class=\"enemy\">" + Textadventure.currentRoom.roomEnemy.type + " </span> besiegt.";
                     document.body.innerHTML = "";
                     firstDiv.innerHTML = "GAME OVER";
-                    allElements.push(firstDiv, endDiv, inputField);
-                    break;
-                default:
+                    allElements.push(firstDiv, endDiv);
                     break;
             }
             allElements.forEach(element => {
                 document.body.appendChild(element);
             });
-            document.getElementById("consoleInput input").focus();
         }
         /////////////////////// DeleteConsole //////////////////////////////
         static loadGame(_inputLowerElement) {
@@ -896,13 +883,11 @@ var Textadventure;
                     const submitBtn = document.createElement("button");
                     uploadInput.type = "file";
                     uploadInput.id = "uploadBtn";
-                    uploadInput.placeholder = "test";
                     submitBtn.id = "loadBtn";
                     submitBtn.innerHTML = "Gamefile Hochladen";
                     firstDiv.innerHTML = Textadventure.SearchContent.search("loadMessage");
                     backDiv.innerHTML = Textadventure.SearchContent.search("back");
                     ConsoleOutput.deleteConsole(_inputLowerElement);
-                    Textadventure.gameStage = "loadGame";
                     allElements.push(seperatorDiv, firstDiv, backDiv, uploadInput, submitBtn, inputField);
                     break;
                 case "b":
@@ -915,6 +900,7 @@ var Textadventure;
                     allElements.push(seperatorDiv, firstDiv, inputField);
                     ConsoleOutput.deleteConsole(_inputLowerElement);
                     Textadventure.gameStage = "inGame";
+                    break;
             }
             allElements.forEach(element => {
                 document.body.appendChild(element);
@@ -983,12 +969,6 @@ var Textadventure;
 })(Textadventure || (Textadventure = {}));
 var Textadventure;
 (function (Textadventure) {
-    class DamageEffect {
-    }
-    Textadventure.DamageEffect = DamageEffect;
-})(Textadventure || (Textadventure = {}));
-var Textadventure;
-(function (Textadventure) {
     class GenerateSaveFile {
         constructor() {
             this.currentRoomName = Textadventure.currentRoom.roomName;
@@ -1037,7 +1017,6 @@ var Textadventure;
                     Textadventure.inventory = myFileArray.currentinventory;
                     Textadventure.currentRoom.roomItem = myFileArray.currentItem;
                     Textadventure.currentRoom.roomEvent = myFileArray.currentEvent;
-                    Textadventure.gameStage = "loadGame";
                     Textadventure.ConsoleOutput.filterConsoleType("gameLoaded");
                 }
             });
