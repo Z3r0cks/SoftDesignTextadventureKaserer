@@ -7,8 +7,8 @@
 /// <reference path="./Items/Weapon.ts" />
 
 namespace Textadventure {
-  export let currentRoom: Room;
   export let gameStage: string = "start";
+  export let currentRoom: Room;
   export let storyboard: GetStory[];
   export let player: Player = new Player(100, new Stick, new Clothing);
   export let inventory: Inventar = new Inventar([new HealPortion]);

@@ -15,7 +15,6 @@ namespace Textadventure {
       this.roomItem = _roomItem as Item;
     }
 
-
     static findWay(_direction: string): Room | boolean {
       switch (_direction) {
         case ("left"):
@@ -31,7 +30,6 @@ namespace Textadventure {
           return false;
       }
     }
-
 
     static changeRoom(_direction: string): void {
       if (currentRoom.roomEnemy == false) {

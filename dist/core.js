@@ -189,7 +189,7 @@ var Textadventure;
     class Clothing extends Armor {
         constructor() {
             super();
-            this.name = "Stoffkeidung";
+            this.name = "Stoffkleidung";
             this.defense = 1;
             this.type = "armor";
         }
@@ -462,7 +462,7 @@ var Textadventure;
     // constructor(_roomName: string, _roomEvent: Event | boolean, _roomEnemy: Creature | boolean, _roomItem: Item | boolean)
     // A-Rooms
     Textadventure.a1 = new Textadventure.Room("a1", false, new Textadventure.Goblin, new Textadventure.HealPortion);
-    Textadventure.a2 = new Textadventure.Room("a2", new Textadventure.DamageEvent, false, new Textadventure.Incendiary);
+    Textadventure.a2 = new Textadventure.Room("a2", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.Incendiary);
     Textadventure.a3 = new Textadventure.Room("a3", new Textadventure.HealEvent, new Textadventure.Skeleton, new Textadventure.Incendiary);
     Textadventure.a4 = new Textadventure.Room("a4", new Textadventure.HealEvent, new Textadventure.Gilbad, new Textadventure.Incendiary);
     Textadventure.a5 = new Textadventure.Room("a5", false, new Textadventure.Vampir, false);
@@ -476,14 +476,14 @@ var Textadventure;
     Textadventure.b6 = new Textadventure.Room("b6", new Textadventure.HealEvent, false, false);
     //C-Rooms
     Textadventure.c1 = new Textadventure.Room("c1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.c2 = new Textadventure.Room("c2", new Textadventure.DamageEvent, false, new Textadventure.Woodarmor);
+    Textadventure.c2 = new Textadventure.Room("c2", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.Woodarmor);
     Textadventure.c3 = new Textadventure.Room("c3", false, new Textadventure.Skeleton, false);
     Textadventure.c4 = new Textadventure.Room("c4", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.Incendiary);
     Textadventure.c5 = new Textadventure.Room("c5", new Textadventure.DamageEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
     Textadventure.c6 = new Textadventure.Room("c6", false, new Textadventure.Skull, new Textadventure.HealPortion);
     //D-Rooms
     Textadventure.d1 = new Textadventure.Room("d1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
-    Textadventure.d2 = new Textadventure.Room("d2", false, false, false);
+    Textadventure.d2 = new Textadventure.Room("d2", false, new Textadventure.Goblin, false);
     Textadventure.d3 = new Textadventure.Room("d3", false, new Textadventure.Skeleton, false);
     Textadventure.d4 = new Textadventure.Room("d4", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
     Textadventure.d5 = new Textadventure.Room("d5", new Textadventure.DamageEvent, false, false);
@@ -491,30 +491,30 @@ var Textadventure;
     //E-Rooms
     Textadventure.e1 = new Textadventure.Room("e1", new Textadventure.HealEvent, false, new Textadventure.Mace);
     Textadventure.e2 = new Textadventure.Room("e2", false, new Textadventure.Skeleton, false);
-    Textadventure.e3 = new Textadventure.Room("e3", false, false, false);
+    Textadventure.e3 = new Textadventure.Room("e3", new Textadventure.HealEvent, false, false);
     Textadventure.e4 = new Textadventure.Room("e4", new Textadventure.DamageEvent, new Textadventure.Valentine, false);
-    Textadventure.e5 = new Textadventure.Room("e5", false, false, false);
-    Textadventure.e6 = new Textadventure.Room("e6", new Textadventure.HealEvent, false, false);
+    Textadventure.e5 = new Textadventure.Room("e5", new Textadventure.HealEvent, false, false);
+    Textadventure.e6 = new Textadventure.Room("e6", false, false, false);
     //F-Rooms
     Textadventure.f1 = new Textadventure.Room("f1", false, new Textadventure.Gilbad, new Textadventure.Incendiary);
-    Textadventure.f2 = new Textadventure.Room("f2", false, new Textadventure.Skeleton, new Textadventure.HealPortion);
+    Textadventure.f2 = new Textadventure.Room("f2", new Textadventure.HealEvent, new Textadventure.Skeleton, new Textadventure.HealPortion);
     Textadventure.f3 = new Textadventure.Room("f3", false, new Textadventure.Skeleton, false);
-    Textadventure.f4 = new Textadventure.Room("f4", false, new Textadventure.Vampir, false);
-    Textadventure.f5 = new Textadventure.Room("f5", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
-    Textadventure.f6 = new Textadventure.Room("f6", false, false, false);
+    Textadventure.f4 = new Textadventure.Room("f4", new Textadventure.DamageEvent, new Textadventure.Vampir, false);
+    Textadventure.f5 = new Textadventure.Room("f5", new Textadventure.DamageEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
+    Textadventure.f6 = new Textadventure.Room("f6", new Textadventure.HealEvent, false, false);
     //G-Rooms
-    Textadventure.g1 = new Textadventure.Room("g1", false, false, false);
+    Textadventure.g1 = new Textadventure.Room("g1", new Textadventure.HealEvent, false, false);
     Textadventure.g2 = new Textadventure.Room("g2", new Textadventure.DamageEvent, false, false);
-    Textadventure.g3 = new Textadventure.Room("g3", new Textadventure.HealEvent, new Textadventure.Skeleton, new Textadventure.LeatherClothing);
-    Textadventure.g4 = new Textadventure.Room("g4", false, false, false);
-    Textadventure.g6 = new Textadventure.Room("g6", false, false, false);
+    Textadventure.g3 = new Textadventure.Room("g3", false, new Textadventure.Skeleton, new Textadventure.LeatherClothing);
+    Textadventure.g4 = new Textadventure.Room("g4", new Textadventure.HealEvent, false, false);
+    Textadventure.g6 = new Textadventure.Room("g6", new Textadventure.DamageEvent, false, false);
     //H-Rooms
     Textadventure.h1 = new Textadventure.Room("h1", new Textadventure.DamageEvent, false, false);
     Textadventure.h2 = new Textadventure.Room("h2", false, false, new Textadventure.Incendiary);
-    Textadventure.h3 = new Textadventure.Room("h3", false, false, false);
+    Textadventure.h3 = new Textadventure.Room("h3", new Textadventure.HealEvent, false, false);
     Textadventure.h4 = new Textadventure.Room("h4", new Textadventure.DamageEvent, new Textadventure.Skull, false);
-    Textadventure.h5 = new Textadventure.Room("h5", false, false, false);
-    Textadventure.h6 = new Textadventure.Room("h6", new Textadventure.HealEvent, false, new Textadventure.HealPortion);
+    Textadventure.h5 = new Textadventure.Room("h5", new Textadventure.HealEvent, false, false);
+    Textadventure.h6 = new Textadventure.Room("h6", false, false, new Textadventure.HealPortion);
     // set posibleDirections
     // addPosRooms(_posLeft: Room | boolean, _posRight: Room | boolean, _posFoward: Room | boolean)
     // A-Rooms
@@ -522,7 +522,7 @@ var Textadventure;
     Textadventure.a2.addPosRooms(false, Textadventure.b2, Textadventure.a3);
     Textadventure.a3.addPosRooms(false, Textadventure.b3, false);
     Textadventure.a4.addPosRooms(Textadventure.c5, false, false);
-    Textadventure.a4.addPosRooms(false, Textadventure.a6, false);
+    Textadventure.a5.addPosRooms(false, Textadventure.a6, false);
     Textadventure.a6.addPosRooms(false, false, false); // Finish
     // B-Rooms
     Textadventure.b1.addPosRooms(false, Textadventure.c2, false);
@@ -628,11 +628,11 @@ var Textadventure;
         /////////////////////// StartMenu //////////////////////////////
         static buildStartMenu(_inputLowerElement) {
             const seperatorDiv = document.createElement("div");
-            seperatorDiv.className = "seperator";
             const firstDiv = document.createElement("div");
             const inputField = document.createElement("input");
-            inputField.id = "consoleInput input";
             const allElements = [];
+            seperatorDiv.className = "seperator";
+            inputField.id = "consoleInput input";
             switch (_inputLowerElement) {
                 case "start":
                     const startDiv = document.createElement("div");
@@ -674,12 +674,12 @@ var Textadventure;
             const seperatorDiv = document.createElement("div");
             const firstDiv = document.createElement("div");
             const inputField = document.createElement("input");
-            seperatorDiv.className = "seperator";
-            inputField.id = "consoleInput input";
-            const allElements = [];
             const roomEnemy = Textadventure.Creature.getRoomEnemy();
             const roomEvent = Textadventure.Event.getRoomEvent();
             const roomItem = Textadventure.Item.getRoomItem();
+            const allElements = [];
+            seperatorDiv.className = "seperator";
+            inputField.id = "consoleInput input";
             switch (_inputLowerElement) {
                 case ("hilfe"):
                     firstDiv.innerHTML = Textadventure.SearchContent.search("helpContent");
@@ -851,7 +851,7 @@ var Textadventure;
             });
             document.getElementById("consoleInput input").focus();
         }
-        /////////////////////// DeleteConsole //////////////////////////////
+        /////////////////////// buildEndMenu //////////////////////////////
         static buildEndMenu(_inputLowerElement) {
             const allElements = [];
             const firstDiv = document.createElement("div");
@@ -868,7 +868,7 @@ var Textadventure;
                 document.body.appendChild(element);
             });
         }
-        /////////////////////// DeleteConsole //////////////////////////////
+        /////////////////////// loadGame //////////////////////////////
         static loadGame(_inputLowerElement) {
             const allElements = [];
             const seperatorDiv = document.createElement("div");
@@ -907,6 +907,7 @@ var Textadventure;
             });
             document.getElementById("consoleInput input").focus();
         }
+        /////////////////////// deleteConsole //////////////////////////////
         static deleteConsole(_input) {
             const inputFieldCheck = document.getElementById("consoleInput input");
             if (inputFieldCheck != null && Textadventure.checkInput(_input)) {

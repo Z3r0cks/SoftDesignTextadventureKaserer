@@ -14,7 +14,7 @@ namespace Textadventure {
 
     public constructor() {
       super();
-      this.name = "Stoffkeidung";
+      this.name = "Stoffkleidung";
       this.defense = 1;
       this.type = "armor";
     }

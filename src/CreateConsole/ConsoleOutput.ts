@@ -20,14 +20,13 @@ namespace Textadventure {
     }
 
     /////////////////////// StartMenu //////////////////////////////
-
     static buildStartMenu(_inputLowerElement: string): void {
       const seperatorDiv: HTMLDivElement = document.createElement("div");
-      seperatorDiv.className = "seperator";
       const firstDiv: HTMLDivElement = document.createElement("div");
       const inputField: HTMLInputElement = document.createElement("input");
-      inputField.id = "consoleInput input";
       const allElements: HTMLElement[] = [];
+      seperatorDiv.className = "seperator";
+      inputField.id = "consoleInput input";
 
       switch (_inputLowerElement) {
 
@@ -70,19 +69,17 @@ namespace Textadventure {
       document.getElementById("consoleInput input").focus();
     }
 
-
     /////////////////////// IngameMenu //////////////////////////////
-
     static buildIngameMenu(_inputLowerElement: string): void {
       const seperatorDiv: HTMLDivElement = document.createElement("div");
       const firstDiv: HTMLDivElement = document.createElement("div");
       const inputField: HTMLInputElement = document.createElement("input");
-      seperatorDiv.className = "seperator";
-      inputField.id = "consoleInput input";
-      const allElements: HTMLElement[] = [];
       const roomEnemy: Creature | boolean = Creature.getRoomEnemy();
       const roomEvent: Event | boolean = Event.getRoomEvent();
       const roomItem: Item | boolean = Item.getRoomItem();
+      const allElements: HTMLElement[] = [];
+      seperatorDiv.className = "seperator";
+      inputField.id = "consoleInput input";
 
       switch (_inputLowerElement) {
         case ("hilfe"):
@@ -127,6 +124,7 @@ namespace Textadventure {
           allElements.push(firstDiv, inputField);
           ConsoleOutput.deleteConsole(_inputLowerElement);
           break;
+
         case ("ein"):
           if (currentRoom.roomItem != false) {
 
@@ -135,6 +133,7 @@ namespace Textadventure {
                 firstDiv.innerHTML = "Du lässt: <span>" + player.weapon.name + "</span> fallen und nimmst: <span>" + (currentRoom.roomItem as Weapon).name + " </span>in die Hand";
                 player.changeWeapon((currentRoom.roomItem as Weapon));
                 break;
+
               case "armor":
                 firstDiv.innerHTML = "Du lässt: <span>" + player.armor.name + "</span> fallen und legst: <span>" + (currentRoom.roomItem as Armor).name + " </span>an";
                 player.changeArmor((currentRoom.roomItem as Armor));
@@ -271,7 +270,7 @@ namespace Textadventure {
       document.getElementById("consoleInput input").focus();
     }
 
-    /////////////////////// DeleteConsole //////////////////////////////
+    /////////////////////// buildEndMenu //////////////////////////////
     static buildEndMenu(_inputLowerElement: string): void {
       const allElements: HTMLElement[] = [];
       const firstDiv: HTMLDivElement = document.createElement("div");
@@ -290,8 +289,7 @@ namespace Textadventure {
       });
     }
 
-    /////////////////////// DeleteConsole //////////////////////////////
-
+    /////////////////////// loadGame //////////////////////////////
     static loadGame(_inputLowerElement: string): void {
       const allElements: HTMLElement[] = [];
       const seperatorDiv: HTMLDivElement = document.createElement("div");
@@ -334,6 +332,7 @@ namespace Textadventure {
       document.getElementById("consoleInput input").focus();
     }
 
+    /////////////////////// deleteConsole //////////////////////////////
     static deleteConsole(_input: string): void {
       const inputFieldCheck: HTMLElement = document.getElementById("consoleInput input");
       if (inputFieldCheck != null && checkInput(_input)) {

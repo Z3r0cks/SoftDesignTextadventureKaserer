@@ -14,7 +14,7 @@ namespace createConsole {
     + content: string
   }
   abstract class SearchContent {
-    {static}searchContent(_string: string)
+    {static}search(_string: string)
   }
 }
 
