@@ -1,9 +1,245 @@
 @startuml Textadventure
 
-abstract class SearchContent {
-  {static}searchContent(_string: string)
+namespace createConsole {
+  class ConsoleOutput {
+    {static} filterConsoleType(_inputElement: string)
+    {static} buildStartMenu(_inputLowerElement: string)
+    {static} buildIngameMenu(_inputLowerElement: string)
+    {static} buildEndMenu(_inputLowerElement: string)
+    {static} loadGame(_inputLowerElement: string)
+    {static} deleteConsole(_input: string)
+  }
+  interface GetStory {
+    + id: string
+    + content: string
+  }
+  abstract class SearchContent {
+    {static}searchContent(_string: string)
+  }
 }
 
+namespace Creatures {
+  abstract class Creature {
+    {abstract}hp: number
+    {abstract}type: string
+    {abstract}weapon: Weapon
+    {abstract}armor: Armor
+
+    {static}getRoomEnemy()
+    {static}attackEnemy()
+    {static}removeEnemyFroomRoom()
+    {static}chIfEnemyDead()
+  }
+
+  class Player extends Creature {
+    + hp: number
+    + weapon: string
+    + strength: number
+    + constructor(_hp:number, _weapon: string, _stength: number)
+    + changeWeapon(_weapon: Weapon)
+    + changeArmor(_armor: Armor)
+    + ifGameOver()
+  }
+
+  class Goblin extends Creature {
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    + constructor()
+  }
+
+  class Skeleton extends Creature {
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    + constructor()
+  }
+
+  class Vampir extends Creature {
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    + constructor()
+  }
+
+  class Gilbad extends Creature {
+    + Name: String
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    constructor()
+  }
+  class Skull extends Creature {
+    + Name: String
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    constructor()
+  }
+  class Valentine extends Creature {
+    + Name: String
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    constructor()
+  }
+  class Gabriel extends Creature {
+    + Name: String
+    + hp: number
+    + strength
+    + type: string
+    + weapon: string
+    constructor()
+  }
+}
+
+namespace Events {
+  abstract class Event {
+    + story: string
+    + effect: effect
+
+    {static} getRoomEvent()
+    {static} executeEvent()
+  }
+
+  class HealEvent extends Event {
+    + story: string
+    + effect: effect
+    + constructor()
+  }
+
+  class DamageEvent extends Event {
+    + story: string
+    + effect: effect
+    + constructor()
+  }
+}
+
+namespace Items {
+  abstract class Item {
+    + name: string
+    + type: string
+
+    {static} getRoomItem()
+    {static} checkRoomItem()
+  }
+
+  abstract class Weapon extends Item {
+    + type: string
+    + strength: number
+    + type: string
+  }
+
+  class Stick extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class Sword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class RostySword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class NobleSword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class BastardSword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class LongSword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class Mace extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+  class HolySword extends Weapon {
+    + name: string
+    + strength: number
+    + type: string
+    + constructor()
+  }
+
+  abstract class Armor extends Item {
+    + type: string
+    + defense: number
+    + type: string
+  }
+
+  class Clothing extends Armor {
+    + name: string
+    + defense: number
+    + type: string
+    + constructor()
+  }
+
+  class LeatherClothing extends Armor {
+    + name: string
+    + defense: number
+    + type: string
+    + constructor()
+  }
+
+  class Woodarmor extends Armor {
+    + name: string
+    + defense: number
+    + type: string
+    + constructor()
+  }
+
+  class PlateArmor extends Armor {
+    + name: string
+    + defense: number
+    + type: string
+    + constructor()
+  }
+
+  class HolyArmor extends Armor {
+    + name: string
+    + defense: number
+    + type: string
+    + constructor()
+  }
+
+  class HealPortion extends Item {
+    + name: string
+    + type: string
+    + constructor()
+    {static} useHealPortion()
+  }
+  class Incendiary extends Item {
+    + name: string
+    + type: string
+    + constructor()
+    {static} useIncendiary()
+  }
+
+}
 class Inventar {
   + currentInventar: Item[]
   + constructor(_currentInventar: Item[])
@@ -16,15 +252,6 @@ class Inventar {
   + constructor(_currentInventar:string[])
   + addItem(_item: string)
   + removeItem(_item: string)
-}
-
-class ConsoleOutput {
-  {static} filterConsoleType(_inputElement: string)
-  {static} buildStartMenu(_inputLowerElement: string)
-  {static} buildIngameMenu(_inputLowerElement: string)
-  {static} buildEndMenu(_inputLowerElement: string)
-  {static} loadGame(_inputLowerElement: string)
-  {static} deleteConsole(_input: string)
 }
 
 class Room {
@@ -42,248 +269,22 @@ class Room {
   + addItemToRoom()
   + addPosRooms()
 }
+namespace SaveLoad {
+  class GenerateSaveFile {
+    + currentRoomName: string
+    + currentWeapon: Weapon
+    + currentArmor: Armor
+    + currentinventory: Inventar
+    + currentHP: number
+    + currentEvent: Event | boolean
+    + currentItem: Item | boolean
 
-abstract class Event {
-  + story: string
-  + effect: effect
-
-  {static} getRoomEvent()
-  {static} executeEvent()
+    + constructor()
+  }
+  class SaveLoad {
+    {static} saveGame()
+    {static} roomNameToRoom()
+    {static} loadGame()
+  }
 }
-
-class HealEvent {
-  + story: string
-  + effect: effect
-  + constructor()
-}
-
-interface DamageEvent {
-  + story: string
-  + effect: effect
-  + constructor()
-}
-
-interface GetStory {
-  + id: string
-  + content: string
-}
-
-abstract class Creature {
-  {abstract}hp: number
-  {abstract}type: string
-  {abstract}weapon: Weapon
-  {abstract}armor: Armor
-
-  {static}getRoomEnemy()
-  {static}attackEnemy()
-  {static}removeEnemyFroomRoom()
-  {static}chIfEnemyDead()
-}
-
-class Player extends Creature {
-  + hp: number
-  + weapon: string
-  + strength: number
-  + constructor(_hp:number, _weapon: string, _stength: number)
-  + changeWeapon(_weapon: Weapon)
-  + changeArmor(_armor: Armor)
-  + ifGameOver()
-}
-
-class Goblin extends Creature {
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  + constructor()
-}
-
-class Skeleton extends Creature {
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  + constructor()
-}
-
- class Vampir extends Creature {
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  + constructor()
-}
-
-class Gilbad extends Creature {
-  + Name: String
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  constructor()
-}
-class Skull extends Creature {
-  + Name: String
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  constructor()
-}
-class Valentine extends Creature {
-  + Name: String
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  constructor()
-}
-class Gabriel extends Creature {
-  + Name: String
-  + hp: number
-  + strength
-  + type: string
-  + weapon: string
-  constructor()
-}
-
-abstract class Item {
-  + name: string
-  + type: string
-
-  {static} getRoomItem()
-  {static} checkRoomItem()
-}
-
-abstract class Weapon extends Item {
-  + type: string
-  + strength: number
-  + type: string
-}
-
-class Stick extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class Sword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class RostySword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class NobleSword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class BastardSword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class LongSword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class Mace extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-class HolySword extends Weapon {
-  + name: string
-  + strength: number
-  + type: string
-  + constructor()
-}
-
-abstract class Armor extends Item {
-  + type: string
-  + defense: number
-  + type: string
-}
-
-class Clothing extends Armor {
-  + name: string
-  + defense: number
-  + type: string
-  + constructor()
-}
-
-class LeatherClothing extends Armor {
-  + name: string
-  + defense: number
-  + type: string
-  + constructor()
-}
-
-class Woodarmor extends Armor {
-  + name: string
-  + defense: number
-  + type: string
-  + constructor()
-}
-
-class PlateArmor extends Armor {
-  + name: string
-  + defense: number
-  + type: string
-  + constructor()
-}
-
-class HolyArmor extends Armor {
-  + name: string
-  + defense: number
-  + type: string
-  + constructor()
-}
-
-class HealPortion extends Item {
-  + name: string
-  + type: string
-  + constructor()
-  {static} useHealPortion()
-}
-class Incendiary extends Item {
-  + name: string
-  + type: string
-  + constructor()
-  {static} useIncendiary()
-}
-
-class GenerateSaveFile {
-  + currentRoomName: string
-  + currentWeapon: Weapon
-  + currentArmor: Armor
-  + currentinventory: Inventar
-  + currentHP: number
-  + currentEvent: Event | boolean
-  + currentItem: Item | boolean
-
-  + constructor()
-}
-
-class SaveLoad {
-  {static} saveGame()
-  {static} roomNameToRoom()
-  {static} loadGame()
-}
-
-  GetStory -[hidden]->  ConsoleOutput
-  ConsoleOutput -[hidden]-> Creature
-  Room -[hidden]-> Inventar
-  Gilbad -[hidden]-> Item
 @enduml

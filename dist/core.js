@@ -468,21 +468,21 @@ var Textadventure;
     Textadventure.a5 = new Textadventure.Room("a5", false, new Textadventure.Vampir, false);
     Textadventure.a6 = new Textadventure.Room("a6", new Textadventure.HealEvent, new Textadventure.Gabriel, new Textadventure.HealPortion); // TODO: Finish
     //B-Rooms
-    Textadventure.b1 = new Textadventure.Room("b1", false, false, false);
+    Textadventure.b1 = new Textadventure.Room("b1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
     Textadventure.b2 = new Textadventure.Room("b2", new Textadventure.DamageEvent, new Textadventure.Goblin, new Textadventure.Sword);
     Textadventure.b3 = new Textadventure.Room("b3", false, new Textadventure.Goblin, false);
-    Textadventure.b4 = new Textadventure.Room("b4", false, new Textadventure.Vampir, new Textadventure.Incendiary);
+    Textadventure.b4 = new Textadventure.Room("b4", new Textadventure.DamageEvent, new Textadventure.Vampir, new Textadventure.Incendiary);
     Textadventure.b5 = new Textadventure.Room("b5", false, false, false);
     Textadventure.b6 = new Textadventure.Room("b6", new Textadventure.HealEvent, false, false);
     //C-Rooms
-    Textadventure.c1 = new Textadventure.Room("c1", new Textadventure.HealEvent, false, false);
+    Textadventure.c1 = new Textadventure.Room("c1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
     Textadventure.c2 = new Textadventure.Room("c2", new Textadventure.DamageEvent, false, new Textadventure.Woodarmor);
     Textadventure.c3 = new Textadventure.Room("c3", false, new Textadventure.Skeleton, false);
-    Textadventure.c4 = new Textadventure.Room("c4", false, new Textadventure.Vampir, new Textadventure.Incendiary);
-    Textadventure.c5 = new Textadventure.Room("c5", false, new Textadventure.Vampir, new Textadventure.HealPortion);
+    Textadventure.c4 = new Textadventure.Room("c4", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.Incendiary);
+    Textadventure.c5 = new Textadventure.Room("c5", new Textadventure.DamageEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
     Textadventure.c6 = new Textadventure.Room("c6", false, new Textadventure.Skull, new Textadventure.HealPortion);
     //D-Rooms
-    Textadventure.d1 = new Textadventure.Room("d1", false, new Textadventure.Goblin, false);
+    Textadventure.d1 = new Textadventure.Room("d1", new Textadventure.HealEvent, new Textadventure.Goblin, false);
     Textadventure.d2 = new Textadventure.Room("d2", false, false, false);
     Textadventure.d3 = new Textadventure.Room("d3", false, new Textadventure.Skeleton, false);
     Textadventure.d4 = new Textadventure.Room("d4", new Textadventure.HealEvent, new Textadventure.Vampir, new Textadventure.HealPortion);
@@ -1018,6 +1018,9 @@ var Textadventure;
                     Textadventure.currentRoom.roomItem = myFileArray.currentItem;
                     Textadventure.currentRoom.roomEvent = myFileArray.currentEvent;
                     Textadventure.ConsoleOutput.filterConsoleType("gameLoaded");
+                    if (Textadventure.currentRoom.roomEnemy != false) {
+                        Textadventure.Creature.removeEnemyFromRoom();
+                    }
                 }
             });
         }

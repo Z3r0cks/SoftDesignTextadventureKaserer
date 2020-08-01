@@ -77,7 +77,7 @@
   },
   {
     "id": "attackEnemy",
-    "content": "Du attackierst den Gegner, seine Gesundheit liegt bei: <span class=\"lifepoints\">"
+    "content": "Du attackierst den Gegner, seine Gesundheit liegt bei: <span class=\"EnemyLifepoints\">"
   },
   {
     "id": "enemyAttacksYou",
@@ -85,7 +85,7 @@
   },
   {
     "id": "helpContent",
-    "content": "Benutze die folgende Befehle: <br> <br> <span> us </span>- um dich im Raum umzusehen. <br> <span> IV </span> - um dein Inventar zu sehen <br> <span>ein</span> - um ein Objekt in dein Inventar zu stecken. <br> <span>Heiltrank</span> - um ein Heitrank aus deinem Inventar zu benutzen, falls vorhanden. <br> <span>Brandbombe</span> - um eine Brandbombe aus deinem Inventar zu benutzen, falls vorhanden. <br> <span>gehe [L, R, G]</span> - um in den nächsten Raum zu gehen (L = links, R = rechts, G = geradeaus). <br> <span>a</span> - um einen Feind anzugreifen."
+    "content": "Benutze die folgende Befehle: <br> <br> <span> US </span>- um dich im Raum umzusehen. <br> <span> IV </span> - um dein Inventar zu sehen <br> <span>ein</span> - um ein Objekt in dein Inventar zu stecken. <br> <span>Heiltrank</span> - um ein Heitrank aus deinem Inventar zu benutzen, falls vorhanden. <br> <span>Brandbombe</span> - um eine Brandbombe aus deinem Inventar zu benutzen, falls vorhanden. <br> <span>gehe [L, R, G]</span> - um in den nächsten Raum zu gehen (L = links, R = rechts, G = geradeaus). <br> <span>a</span> - um einen Feind anzugreifen. <br> <span>Gesundheit</span> - um deine Gesundheit zu sehen."
   },
   {
     "id": "title",
@@ -97,6 +97,6 @@
   },
   {
     "id": "intro2",
-    "content": "Was soll ich hier nun machen? (tippe:<span> hilfe </span>) Ich sollte mich am besten mal umschauen (tippe <span> us </span>). Vielleicht finde ich ja etwas nützliches für was ich einstecken kann. (tippe: <span>ein</span>) Ich habe einen Heiltrank, damit kann ich mich heilen (tippe: <span>Heiltrank</span>). Außerdem sollte ich mal nachschauen, ob ich sonst noch was in den Taschen habe (tippe: <span>inventar</span>)."
+    "content": "Was soll ich hier nun machen? (tippe:<span> hilfe </span>) Ich sollte mich am besten mal umschauen (tippe <span> us </span>). Vielleicht finde ich ja etwas nützliches für was ich einstecken kann. (tippe: <span>ein</span>) Ich habe einen Heiltrank, damit kann ich mich heilen (tippe: <span>Heiltrank</span>). Außerdem sollte ich mal nachschauen, ob ich sonst noch was in den Taschen habe (tippe: <span>iv</span>)."
   }
 ]

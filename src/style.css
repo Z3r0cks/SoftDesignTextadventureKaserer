@@ -75,10 +75,13 @@ span {
 }
 
 .lifepoints {
-  color: rgb(4, 139, 33);
+  color: #048b21;
+}
+.EnemyLifepoints {
+  color: #bfcc0e;
 }
 .enemy {
-  color: rgb(255, 0, 0);
+  color: #ff0000;
 }
 
 #loadBtn {

@@ -37,7 +37,11 @@ namespace Textadventure {
           inventory = myFileArray.currentinventory;
           currentRoom.roomItem = myFileArray.currentItem;
           currentRoom.roomEvent = myFileArray.currentEvent;
+
           ConsoleOutput.filterConsoleType("gameLoaded");
+          if (currentRoom.roomEnemy != false) {
+            Creature.removeEnemyFromRoom();
+          }
         }
       }
       );
