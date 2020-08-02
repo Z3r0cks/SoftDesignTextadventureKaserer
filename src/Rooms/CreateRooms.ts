@@ -25,7 +25,7 @@ namespace Textadventure {
   export const b2: Room = new Room("b2", new DamageEvent, new Goblin, new Sword);
   export const b3: Room = new Room("b3", false, new Goblin, false);
   export const b4: Room = new Room("b4", new DamageEvent, new Vampir, new Incendiary);
-  export const b5: Room = new Room("b5", false, false, false);
+  export const b5: Room = new Room("b5", false, new Goblin, false);
   export const b6: Room = new Room("b6", new HealEvent, false, false);
 
   //C-Rooms
@@ -42,15 +42,15 @@ namespace Textadventure {
   export const d3: Room = new Room("d3", false, new Skeleton, false);
   export const d4: Room = new Room("d4", new HealEvent, new Vampir, new HealPortion);
   export const d5: Room = new Room("d5", new DamageEvent, false, false);
-  export const d6: Room = new Room("d6", false, false, false);
+  export const d6: Room = new Room("d6", false, false, new HealPortion);
 
   //E-Rooms
-  export const e1: Room = new Room("e1", new HealEvent, false, new Mace);
+  export const e1: Room = new Room("e1", new HealEvent, new Goblin, new Mace);
   export const e2: Room = new Room("e2", false, new Skeleton, false);
-  export const e3: Room = new Room("e3", new HealEvent, false, false);
+  export const e3: Room = new Room("e3", new HealEvent, new Goblin, false);
   export const e4: Room = new Room("e4", new DamageEvent, new Valentine, false);
   export const e5: Room = new Room("e5", new HealEvent, false, false);
-  export const e6: Room = new Room("e6", false, false, false);
+  export const e6: Room = new Room("e6", false, false, new HealPortion);
 
   //F-Rooms
   export const f1: Room = new Room("f1", false, new Gilbad, new Incendiary);
@@ -61,10 +61,10 @@ namespace Textadventure {
   export const f6: Room = new Room("f6", new HealEvent, false, false);
 
   //G-Rooms
-  export const g1: Room = new Room("g1", new HealEvent, false, false);
+  export const g1: Room = new Room("g1", new HealEvent, new Goblin, false);
   export const g2: Room = new Room("g2", new DamageEvent, false, false);
   export const g3: Room = new Room("g3", false, new Skeleton, new LeatherClothing);
-  export const g4: Room = new Room("g4", new HealEvent, false, false);
+  export const g4: Room = new Room("g4", new HealEvent, new Skeleton, false);
   export const g6: Room = new Room("g6", new DamageEvent, false, false);
 
   //H-Rooms
@@ -72,7 +72,7 @@ namespace Textadventure {
   export const h2: Room = new Room("h2", false, false, new Incendiary);
   export const h3: Room = new Room("h3", new HealEvent, false, false);
   export const h4: Room = new Room("h4", new DamageEvent, new Skull, false);
-  export const h5: Room = new Room("h5", new HealEvent, false, false);
+  export const h5: Room = new Room("h5", new HealEvent, new Skeleton, false);
   export const h6: Room = new Room("h6", false, false, new HealPortion);
 
   // set posibleDirections
